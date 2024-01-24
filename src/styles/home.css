@@ -1,0 +1,23 @@
+
+/* HomePage Styles */
+.home-page {
+    min-height: 75vh;
+    display: flex;
+    /* display: none; */
+}
+
+.custom-title {
+    font-family: 'Rokkitt', serif;
+    font-size: 6em;
+    letter-spacing: .4rem;
+    font-weight: 600;
+}
+.ml2 {
+    font-weight: 900;
+    font-size: 4.5em;
+}
+
+.ml2 .letter {
+    display: inline-block;
+    line-height: 1em;
+}
