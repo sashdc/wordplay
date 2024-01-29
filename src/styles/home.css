@@ -25,7 +25,7 @@
  */
 .tracking-in-expand {
   -webkit-animation: tracking-in-expand 3s infinite;
-  animation: tracking-in-expand 3s infinite;
+  animation: tracking-in-expand 4s infinite;
 }
 
 @-webkit-keyframes tracking-in-expand {
@@ -33,7 +33,7 @@
     letter-spacing: -0.5em;
     opacity: 0;
   }
-  60% {
+  50% {
     opacity: 1;
   }
   100% {
@@ -45,7 +45,7 @@
     letter-spacing: -0.5em;
     opacity: 0;
   }
-  70% {
+  50% {
     letter-spacing: 0.1em;
     opacity: 1;
   }
