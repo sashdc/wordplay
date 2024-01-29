@@ -8,6 +8,7 @@ const Play = () => {
     return loadedStorage;
   };
 
+  
   const [wordBank, setWordBank] = useState(loadStorage());
   const [hints, setHints] = useState([]);
   const [currentHintIndex, setCurrentHintIndex] = useState(0);
@@ -52,6 +53,8 @@ const Play = () => {
           };
 
           setWordBank([...wordBank, ranWordObj]);
+          
+
           
           // Add the new hints to the existing hints array
           setHints((prevHints) => [
@@ -126,6 +129,11 @@ const Play = () => {
           {/* Button to reveal the next hint */}
           </div>
           </section>
+            {/* a box with as many dashes as ranWord.length */}
+            <div id="word-guess-box">
+              
+              </div>
+        
            <div id="game-button-area" className="row d-flex justify-content-center align-items-center">
           <button id="next-clue" className="standard-button m-2 text-center"  onClick={revealNextHint}>new hint</button>
           <button id="newWord" className="m-2 standard-button text-center" >new word</button>

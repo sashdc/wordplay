@@ -38,6 +38,12 @@
   color: white;
 }
 
+.keyboard-key:active {
+  background-color: #000900;
+  color: white;
+  box-shadow:  0 0 5px rgba(0, 0, 0, 0.5);
+}
+
 /* .keyboard-key.selected {
   background-color: #4caf50;
   color: white;
