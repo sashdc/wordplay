@@ -1,0 +1,44 @@
+.keyboard {
+  max-width: 90%; /* Set the maximum width for responsiveness */
+  margin: 0 auto; /* Center the keyboard */
+}
+
+.selected-letters {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.keyboard-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* Adjust the number of columns as needed */
+  gap: 5px;
+}
+
+.keyboard-row {
+  display: flex;
+  gap: 5px;
+}
+
+.keyboard-key {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  border-radius: 12px;
+  padding: 10px;
+  font-size: 18px;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s;
+}
+
+.keyboard-key:hover {
+  background-color: #b0b0b0;
+  color: white;
+}
+
+/* .keyboard-key.selected {
+  background-color: #4caf50;
+  color: white;
+} */

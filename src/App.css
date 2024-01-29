@@ -24,6 +24,25 @@ h4 {
     margin: 50px;
     min-height: 90vh;
     position: relative;
+    /* animation: rounder 4s ease-in-out infinite; */
+}
+
+@keyframes rounder {
+    0% {
+        border-radius: 0 0 0 100px;
+    }
+    25% {
+        border-radius: 100px 0 0 0px;
+    }
+    50% {
+        border-radius: 0px 100px 0 0px;
+    }
+    75% {
+        border-radius: 0px 0 100px 0px;
+    }
+    100% {
+        border-radius: 0px 0 0px 100px;
+    }
 }
 
 .subtitle {
