@@ -101,6 +101,13 @@ const Play = () => {
     if (currentHintIndex === hints.length - 1) {
       document.getElementById("next-clue").disabled = true;
       document.getElementById("next-clue").textContent = "no more hints";
+      // add disabled class to the button
+      document
+        .getElementById("next-clue")
+        .classList.remove("standard-button");
+      document
+        .getElementById("next-clue")
+        .classList.add("standard-button-disabled");
     }
   };
 
