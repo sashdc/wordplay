@@ -23,25 +23,27 @@ h4 {
     border: 15px solid #031C3D;
     margin: 50px;
     min-height: 90vh;
-    position: relative;
-    /* animation: rounder 4s ease-in-out infinite; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between    ;
+    animation: rounder 60s ease-in-out infinite;
 }
 
 @keyframes rounder {
     0% {
-        border-radius: 0 0 0 100px;
+        border-radius: 0 0 0 80px;
     }
     25% {
-        border-radius: 100px 0 0 0px;
+        border-radius: 80px 0 0 0px;
     }
     50% {
-        border-radius: 0px 100px 0 0px;
+        border-radius: 0px 80px 0 0px;
     }
     75% {
-        border-radius: 0px 0 100px 0px;
+        border-radius: 0px 0 80px 0px;
     }
     100% {
-        border-radius: 0px 0 0px 100px;
+        border-radius: 0px 0 0px 80px;
     }
 }
 
@@ -93,3 +95,11 @@ h5 {
     border: 4px solid #FF1616;
 }
 
+#play-game{
+    width: 90%;
+}
+
+#user-input-area{
+    margin-bottom: 1rem;
+    width: 90%;
+}

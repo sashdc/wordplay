@@ -13,15 +13,16 @@ const Play = () => {
   const [wordBank, setWordBank] = useState(loadStorage());
   const [hints, setHints] = useState([]);
   const [currentHintIndex, setCurrentHintIndex] = useState(0);
+  const [loading, setLoading] = useState(true); // New state for loading
 
   const getHints = (ranWord) => {
+    setLoading(true); // Set loading to true when fetching hints
     fetch(
       `https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${ranWord}?key=443eb124-d026-41e8-a7c7-3e38052485a4`
     )
       .then((response) => {
         if (response.ok) {
-          console.log('got hints');
-
+          console.log("got hints");
           return response.json();
         }
         throw new Error("No word found. Please try again.");
@@ -32,7 +33,7 @@ const Play = () => {
         } else {
           let wordCat = Math.floor(Math.random() * data.length);
           console.log(data);
-          console.log(ranWord)
+          console.log(ranWord);
           const hintDef = "def. " + data[wordCat].shortdef;
           const hintSyns =
             data[wordCat].meta.syns[
@@ -82,10 +83,13 @@ const Play = () => {
             firstLetter,
             lastLetter,
           ]);
+
+          setTimeout(setLoading(false), 1500) // Set loading to false after fetching hints
         }
       })
       .catch((error) => {
         console.error(error);
+        setLoading(false); // Set loading to false on error
       });
   };
 
@@ -102,9 +106,7 @@ const Play = () => {
       document.getElementById("next-clue").disabled = true;
       document.getElementById("next-clue").textContent = "no more hints";
       // add disabled class to the button
-      document
-        .getElementById("next-clue")
-        .classList.remove("standard-button");
+      document.getElementById("next-clue").classList.remove("standard-button");
       document
         .getElementById("next-clue")
         .classList.add("standard-button-disabled");
@@ -121,13 +123,13 @@ const Play = () => {
     // enable the next hint button
     document.getElementById("next-clue").disabled = false;
     document.getElementById("next-clue").textContent = "new hint";
-  
+
     // fetch a new word
     try {
-      const data =  wordGen();
+      const data = wordGen();
       console.log(data);
       const ranWord = data.word.toLowerCase();
-  
+
       if (
         ranWord.length < 5 ||
         ranWord.length > 7 ||
@@ -137,19 +139,16 @@ const Play = () => {
         return newWord();
       } else {
         // Fetch hints for the new word
-         getHints(ranWord);
+        getHints(ranWord);
         //  render the first hint in the hint box
         const firstHint = document.createElement("div");
         firstHint.textContent = hints[0];
         document.getElementById("hint-box").appendChild(firstHint);
-
-        
       }
     } catch (error) {
       console.error(error);
     }
   };
-  
 
   const wordGen = () => {
     fetch("https://api.api-ninjas.com/v1/randomword", {
@@ -159,7 +158,7 @@ const Play = () => {
       },
     })
       .then((response) => {
-        console.log('got a word');
+        console.log("got a word");
         if (response.ok) {
           return response.json();
         }
@@ -187,53 +186,59 @@ const Play = () => {
   useEffect(() => {
     // Fetch a new word and its hints on component mount
     console.log("useEffect is running");
-
+    setLoading(true); // Set loading to true on component mount
     wordGen();
   }, []);
 
   return (
-    
     <div className="main-container">
       <section id="play-game">
         <div id="hint-area">
-          <h3>Finding you a word....</h3>
-          <div id="hint-box">
-            {/* Display accumulating hints*/}
-            <div id="first-hint">{hints[0]}</div>
-          </div>
+          {loading ? (
+            <h3>Finding you a word....</h3>
+          ) : (
+            <div id="hint-box">
+              {/* Display accumulating hints*/}
+              <div id="first-hint">{hints[0]}</div>
+            </div>
+          )}
           {/* Button to reveal the next hint */}
         </div>
-      </section>
+      </section>{" "}
       {/* a box with as many dashes as ranWord.length */}
-      <div id="word-guess-box"></div>
-
-      <div
-        id="game-button-area"
-        className="row d-flex justify-content-center align-items-center"
-      >
-        <button
-          id="next-clue"
-          className="standard-button m-2 text-center"
-          onClick={revealNextHint}
+      <div id="user-input-area">
+        <div
+          id="game-button-area"
+          className="row d-flex justify-content-center align-items-center"
         >
-          new hint
-        </button>
-        <button id="newWord" className="m-2 standard-button text-center" onClick={newWord}>
-          new word
-        </button>
-        <Link to="/">
-          <button id="home-btn" className="standard-button" type="button">
-            home
+          <button
+            id="next-clue"
+            className="standard-button m-2 text-center"
+            onClick={revealNextHint}
+          >
+            new hint
           </button>
-        </Link>
-        <button
-          id="gameplay-wordbankbutton"
-          className="m-2 standard-button text-center"
-        >
-          wordbank
-        </button>
+          <button
+            id="newWord"
+            className="m-2 standard-button text-center"
+            onClick={newWord}
+          >
+            new word
+          </button>
+          <Link to="/">
+            <button id="home-btn" className="standard-button" type="button">
+              home
+            </button>
+          </Link>
+          <button
+            id="gameplay-wordbankbutton"
+            className="m-2 standard-button text-center"
+          >
+            wordbank
+          </button>
+        </div>
+        <Keyboard />
       </div>
-      <Keyboard />
     </div>
   );
 };
