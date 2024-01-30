@@ -4,6 +4,7 @@
 .keyboard {
   max-width: 90%; /* Set the maximum width for responsiveness */
   margin: 0 auto; /* Center the keyboard */
+  
 }
 
 .selected-letters {

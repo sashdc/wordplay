@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/keyboard.css'; // Create a CSS file for styling
 
 const Keyboard = () => {
@@ -26,6 +26,26 @@ const Keyboard = () => {
     setSelectedLetters('');
   };
 
+  const handleKeyDown = (event) => {
+    // Check if the pressed key is a letter and update the selected letters
+    const isLetter = /^[a-zA-Z]$/.test(event.key);
+    if (isLetter) {
+      setSelectedLetters((prevLetters) => prevLetters + event.key.toUpperCase());
+    } else if (event.key === 'Backspace') {
+      // Handle backspace key
+      setSelectedLetters((prevLetters) => prevLetters.slice(0, -1));
+    }
+  };
+
+  useEffect(() => {
+    // Add event listener for keydown on the entire document
+    document.addEventListener('keydown', handleKeyDown);
+    // Remove the event listener on component unmount
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []); // Empty dependency array to ensure the effect runs only once on mount
+
   // Define the QWERTY layout
   const qwertyLayout = [
     'QWERTYUIOP',
@@ -36,7 +56,9 @@ const Keyboard = () => {
   return (
     <div className="keyboard">
       {/* Display the selected letters */}
-      <div className="selected-letters">{selectedLetters}</div>
+      <div className="selected-letters" autoFocus>
+        {selectedLetters}
+      </div>
 
       {/* Create the keyboard grid using the QWERTY layout */}
       <div className="keyboard-grid">
@@ -45,7 +67,9 @@ const Keyboard = () => {
             {row.split('').map((letter, colIndex) => (
               <div
                 key={colIndex}
-                className={`keyboard-key ${selectedLetters.includes(letter) ? 'selected' : ''}`}
+                className={`keyboard-key ${
+                  selectedLetters.includes(letter) ? 'selected' : ''
+                }`}
                 onClick={() => handleLetterClick(letter)}
               >
                 {letter}
