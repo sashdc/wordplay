@@ -232,6 +232,7 @@ const Play = () => {
       const newHint = document.createElement("div");
       newHint.textContent = commonLetters;
       document.getElementById("hint-box").appendChild(newHint);
+      revealNextHint();
     }
 
   
