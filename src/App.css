@@ -103,3 +103,10 @@ h5 {
     margin-bottom: 1rem;
     width: 90%;
 }
+
+.correct{
+    color: green;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bolder;
+}

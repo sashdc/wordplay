@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 const Play = () => {
   console.log("Component re-rendered");
-
   const loadStorage = () => {
     const loadedStorage = JSON.parse(localStorage.getItem("word-bank")) || [];
     return loadedStorage;
   };
 
+  const [ranWord, setRanWord] = useState("");
   const [wordBank, setWordBank] = useState(loadStorage());
   const [hints, setHints] = useState([]);
   const [currentHintIndex, setCurrentHintIndex] = useState(0);
@@ -32,8 +32,8 @@ const Play = () => {
           wordGen();
         } else {
           let wordCat = Math.floor(Math.random() * data.length);
-          console.log(data);
           console.log(ranWord);
+          setRanWord(ranWord);
           const hintDef = "def. " + data[wordCat].shortdef;
           const hintSyns =
             data[wordCat].meta.syns[
@@ -41,14 +41,11 @@ const Play = () => {
             ];
           const firstLetter =
             "It begins with " + ranWord.charAt(0).toUpperCase();
-          console.log(firstLetter);
           const lastLetter =
             "This is your last guess. It ends with " +
             ranWord.charAt(ranWord.length - 1).toUpperCase();
-          console.log(lastLetter);
           const synOneIndex = Math.floor(Math.random() * hintSyns.length);
           const synOne = "syn.1: " + hintSyns[synOneIndex];
-          console.log(synOne);
 
           let synTwoIndex;
 
@@ -57,10 +54,8 @@ const Play = () => {
           } while (synTwoIndex === synOneIndex);
 
           const synTwo = "syn.2: " + hintSyns[synTwoIndex];
-          console.log(synTwo);
 
           const speechPart = data[wordCat].fl;
-          console.log(speechPart);
           setCurrentHintIndex(1);
 
           const ranWordObj = {
@@ -133,7 +128,6 @@ const Play = () => {
     // fetch a new word
     try {
       const data = wordGen();
-      console.log(data);
       const ranWord = data.word.toLowerCase();
 
       if (
@@ -196,6 +190,23 @@ const Play = () => {
     wordGen();
   }, []);
 
+  const handleKeyboardSubmit = (submittedWord) => {
+    // You can use the submittedWord to check it against the word handled in the Play component
+   
+
+    // check if submitted word is the same, if so reveal as correct
+    if (submittedWord.toLowerCase() === ranWord.toLowerCase()) {
+    //  create a div, fill it with the word, and append it to the hint box
+    const newHint = document.createElement("h1");
+    newHint.classList.add("correct");
+    newHint.textContent = `CORRECT! it is ${ranWord}`;
+    document.getElementById("play-game").appendChild(newHint);
+    }
+
+    // You can access the current word from the state or other relevant variables
+    // If it's correct, you can handle it accordingly
+  };
+
   return (
     <div className="main-container">
       <section id="play-game">
@@ -245,7 +256,7 @@ const Play = () => {
           </button>
           </Link>
         </div>
-        <Keyboard />
+        <Keyboard onKeyboardSubmit={handleKeyboardSubmit} />
       </div>
     </div>
   );

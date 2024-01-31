@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/keyboard.css'; // Create a CSS file for styling
 
-const Keyboard = () => {
+const Keyboard = (props) => {
   const [selectedLetters, setSelectedLetters] = useState('');
 
   const handleLetterClick = (letter) => {
@@ -11,7 +11,9 @@ const Keyboard = () => {
 
   const handleEnterClick = () => {
     // Handle the submission of the entered word (you can implement your logic here)
-    console.log('Submitted:', selectedLetters);
+        console.log('Submitted:', selectedLetters);
+    props.onKeyboardSubmit(selectedLetters);
+
     // Clear the selected letters after submission
     setSelectedLetters('');
   };
