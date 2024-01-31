@@ -113,11 +113,12 @@ const Play = () => {
     document.getElementById("hint-box").innerHTML = "";
     // reset the hint index
     setCurrentHintIndex(0);
-    // delete the div with class correct
-    const correctDiv = document.querySelector(".correct");
-    if (correctDiv) {
-      correctDiv.remove();
+    // delete the div with class correct or incorrect if it exists
+    const message = document.querySelector(".alert");
+    if (message) {
+      message.remove();
     }
+
     // reset the hints array
     setHints([]);
     // enable the next hint button
@@ -214,10 +215,10 @@ const Play = () => {
     // check if submitted word is the same, if so reveal as correct
     if (submittedWord.toLowerCase() === ranWord.toLowerCase()) {
     //  create a div, fill it with the word, and append it to the hint box
-    const newHint = document.createElement("h1");
-    newHint.classList.add("correct");
-    newHint.textContent = `CORRECT! it is ${ranWord}`;
-    document.getElementById("play-game").appendChild(newHint);
+    const message = document.createElement("h1");
+    message.classList.add("correct", "alert");
+    message.textContent = `CORRECT! it is ${ranWord}`;
+    document.getElementById("play-game").appendChild(message);
     } else {
       // if not, check if there are common letters and display them
       let commonLetters = "";
@@ -232,7 +233,16 @@ const Play = () => {
       const newHint = document.createElement("div");
       newHint.textContent = commonLetters;
       document.getElementById("hint-box").appendChild(newHint);
-      revealNextHint();
+      console.log(currentHintIndex)
+      if (currentHintIndex<5){
+      revealNextHint();}
+      else {
+        const message = document.createElement("h2");
+        message.classList.add("incorrect", "alert");
+        message.textContent = `Oooh, unlucky. Try again! The word was ${ranWord}`;
+        document.getElementById("play-game").appendChild(message);
+        
+      }
     }
 
   

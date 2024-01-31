@@ -104,18 +104,19 @@ h5 {
     width: 90%;
 }
 
+.alert{   
+     text-align: center;
+    font-size: 3rem;
+    /* font-weight: bolder; */
+    margin: 0;
+}
+
 .correct{
     color: green;
-    text-align: center;
-    font-size: 2rem;
-    font-weight: bolder;
 }
 
 .incorrect{
     color: red;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: bolder;
 }
 
 
