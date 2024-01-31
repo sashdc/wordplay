@@ -252,7 +252,7 @@ const Play = () => {
       <section id="play-game">
         <div id="hint-area">
           {loading ? (
-            <h3>Finding you a word....</h3>
+            <h3>Finding you a word........</h3>
           ) : (
             <div id="hint-box">
               {/* Display accumulating hints*/}

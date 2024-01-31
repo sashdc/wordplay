@@ -15,12 +15,34 @@
   height: 2.2em;
   background-color: #b0b0b0;
   color: whitesmoke;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Rokkitt", serif;
   border-radius: 12px;
   padding: 10px;
   text-align: center;
-  
-}
+  }
+
+  /* add a flashing cursor at the end of the input */
+  .selected-letters::after {
+    content: '';
+    display: inline-block;
+    width: 0.1em;
+    height: 20px;
+    background-color: rgb(255, 255, 255);
+    animation: cursor .7s infinite;
+    margin: 0 2px;
+  }
+ 
+  @keyframes cursor {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
 .keyboard-grid {
   display: grid;
