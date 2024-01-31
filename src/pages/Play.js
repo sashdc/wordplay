@@ -230,12 +230,14 @@ const Play = () => {
               home
             </button>
           </Link>
+          <Link to="/wordbank">
           <button
             id="gameplay-wordbankbutton"
             className="m-2 standard-button text-center"
           >
             wordbank
           </button>
+          </Link>
         </div>
         <Keyboard />
       </div>

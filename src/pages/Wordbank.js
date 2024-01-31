@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/wordbank.css';
 
@@ -12,6 +12,22 @@ const Wordbank = () => {
     synonym: [],
     DictionaryLink: '',
   });
+
+  useEffect(() => {
+    const modal = document.getElementById('wordModal');
+
+    const handleOutsideClick = (event) => {
+      if (event.target === modal) {
+        handleCloseModal();
+      }
+    };
+
+    modal.addEventListener('click', handleOutsideClick);
+
+    return () => {
+      modal.removeEventListener('click', handleOutsideClick);
+    };
+  }, []);
 
   const handleWordButtonClick = (word) => {
     const selectedWord = loadedStorage.find((item) => item.word === word);
@@ -36,8 +52,7 @@ const Wordbank = () => {
     document.getElementById('wordModal').style.display = 'none';
     // Reload the page
     window.location.reload();
-  }
-
+  };
 
   return (
     <div className="main-container">
@@ -67,14 +82,20 @@ const Wordbank = () => {
             {/* Example Modal: */}
             <div id="wordModal" className="modal" style={{ display: 'none' }}>
               <div className="modal-content">
-                <span className="close" onClick={handleCloseModal}>&times;</span>
-                
+                <span className="close-modal-button" onClick={handleCloseModal}>
+                  &times;
+                </span>
+
                 <h2>{modalContent.word}</h2>
                 <p>{modalContent.speechPart}</p>
                 <p>{modalContent.definition}</p>
                 <p>Synonyms: {modalContent.synonym.join(', ')}</p>
-                <a href={modalContent.DictionaryLink} target='blank' className='dictionary-link-button'>Dictionary Link</a>
-                <span className='delete-word-button' onClick={deleteWord}>Delete Word</span>
+                <a href={modalContent.DictionaryLink} target="blank" className="dictionary-link-button">
+                  Dictionary Link
+                </a>
+                <span className="delete-word-button" onClick={deleteWord}>
+                  Delete Word
+                </span>
               </div>
             </div>
           </div>
