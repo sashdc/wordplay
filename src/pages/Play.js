@@ -123,6 +123,12 @@ const Play = () => {
     // enable the next hint button
     document.getElementById("next-clue").disabled = false;
     document.getElementById("next-clue").textContent = "new hint";
+    document
+        .getElementById("next-clue")
+        .classList.remove("standard-button-disabled");
+        document
+        .getElementById("next-clue")
+        .classList.add("standard-button");
 
     // fetch a new word
     try {
