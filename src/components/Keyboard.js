@@ -32,8 +32,13 @@ const Keyboard = (props) => {
     // Check if the pressed key is a letter and update the selected letters
     const isLetter = /^[a-zA-Z]$/.test(event.key);
     if (event.key === "Enter") {
-      console.log(event.key);
-      handleEnterClick();
+      event.preventDefault();
+      console.log( "Pressed Physical Enter Key")
+      console.log("Submitted:", selectedLetters);
+      props.onKeyboardSubmit(selectedLetters);
+  
+      // Clear the selected letters after submission
+      setSelectedLetters("");
     }
     if (isLetter) {
       setSelectedLetters(

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Keyboard from "../components/Keyboard";
 import { Link } from "react-router-dom";
+import "../styles/play.css";
 
 const Play = () => {
   console.log("Component re-rendered");
+  let nextHintButton = document.getElementById("next-clue");
+
   const loadStorage = () => {
     const loadedStorage = JSON.parse(localStorage.getItem("word-bank")) || [];
     return loadedStorage;
@@ -79,7 +82,7 @@ const Play = () => {
             lastLetter,
           ]);
 
-          setTimeout(setLoading(false), 1500) // Set loading to false after fetching hints
+          setTimeout(setLoading(false), 1500); // Set loading to false after fetching hints
         }
       })
       .catch((error) => {
@@ -98,13 +101,11 @@ const Play = () => {
 
     // if the current hint is the last hint, disable the button and add a tooltip saying there are no more hints
     if (currentHintIndex === hints.length - 1) {
-      document.getElementById("next-clue").disabled = true;
-      document.getElementById("next-clue").textContent = "no more hints";
+      nextHintButton.disabled = true;
+      nextHintButton.textContent = "no more hints";
       // add disabled class to the button
-      document.getElementById("next-clue").classList.remove("standard-button");
-      document
-        .getElementById("next-clue")
-        .classList.add("standard-button-disabled");
+      nextHintButton.classList.remove("standard-button");
+      nextHintButton.classList.add("standard-button-disabled");
     }
   };
 
@@ -125,11 +126,9 @@ const Play = () => {
     document.getElementById("next-clue").disabled = false;
     document.getElementById("next-clue").textContent = "new hint";
     document
-        .getElementById("next-clue")
-        .classList.remove("standard-button-disabled");
-        document
-        .getElementById("next-clue")
-        .classList.add("standard-button");
+      .getElementById("next-clue")
+      .classList.remove("standard-button-disabled");
+    document.getElementById("next-clue").classList.add("standard-button");
 
     // fetch a new word
     try {
@@ -201,24 +200,25 @@ const Play = () => {
     if (submittedWord.length !== ranWord.length) {
       const newHint = document.createElement("div");
       newHint.classList.add("incorrect");
-      newHint.textContent = "Try again, This word has " + ranWord.length + " letters";
+      newHint.textContent =
+        "Try again, This word has " + ranWord.length + " letters";
       document.getElementById("play-game").appendChild(newHint);
-    
-      // Set a timeout to remove the hint after a specified duration (e.g., 2000 milliseconds or 2 seconds)
+
+      // Set a timeout to remove the hint after a specified duration
       setTimeout(() => {
         // Remove the hint after the specified duration
         newHint.remove();
       }, 2000); // Adjust the duration as needed
       return;
     }
-    
+
     // check if submitted word is the same, if so reveal as correct
     if (submittedWord.toLowerCase() === ranWord.toLowerCase()) {
-    //  create a div, fill it with the word, and append it to the hint box
-    const message = document.createElement("h1");
-    message.classList.add("correct", "alert");
-    message.textContent = `CORRECT! it is ${ranWord}`;
-    document.getElementById("play-game").appendChild(message);
+      //  create a div, fill it with the word, and append it to the hint box
+      const message = document.createElement("h1");
+      message.classList.add("correct", "alert");
+      message.textContent = `CORRECT! it is ${ranWord}`;
+      document.getElementById("play-game").appendChild(message);
     } else {
       // if not, check if there are common letters and display them
       let commonLetters = "";
@@ -233,20 +233,16 @@ const Play = () => {
       const newHint = document.createElement("div");
       newHint.textContent = commonLetters;
       document.getElementById("hint-box").appendChild(newHint);
-      console.log(currentHintIndex)
-      if (currentHintIndex<5){
-      revealNextHint();}
-      else {
+      console.log(currentHintIndex);
+      if (currentHintIndex < 5) {
+        revealNextHint();
+      } else {
         const message = document.createElement("h2");
         message.classList.add("incorrect", "alert");
         message.textContent = `Oooh, unlucky. Try again! The word was ${ranWord}`;
         document.getElementById("play-game").appendChild(message);
-        
       }
     }
-
-  
-
     // You can access the current word from the state or other relevant variables
     // If it's correct, you can handle it accordingly
   };
@@ -276,6 +272,7 @@ const Play = () => {
             id="next-clue"
             className="standard-button m-2 text-center"
             onClick={revealNextHint}
+            disabled={loading} 
           >
             new hint
           </button>
@@ -292,15 +289,15 @@ const Play = () => {
             </button>
           </Link>
           <Link to="/wordbank">
-          <button
-            id="gameplay-wordbankbutton"
-            className="m-2 standard-button text-center"
-          >
-            wordbank
-          </button>
+            <button
+              id="gameplay-wordbankbutton"
+              className="m-2 standard-button text-center"
+            >
+              wordbank
+            </button>
           </Link>
         </div>
-        <Keyboard id= "keyboard" onKeyboardSubmit={handleKeyboardSubmit} />
+        <Keyboard id="keyboard" onKeyboardSubmit={handleKeyboardSubmit} />
       </div>
     </div>
   );

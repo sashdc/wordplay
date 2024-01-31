@@ -38,6 +38,7 @@
   align-items: center;
   justify-content: center;
   flex: 1;
+  font-weight: bold;
   border-radius: 12px;
   padding: 10px;
   font-size: 18px;
