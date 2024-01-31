@@ -113,6 +113,11 @@ const Play = () => {
     document.getElementById("hint-box").innerHTML = "";
     // reset the hint index
     setCurrentHintIndex(0);
+    // delete the div with class correct
+    const correctDiv = document.querySelector(".correct");
+    if (correctDiv) {
+      correctDiv.remove();
+    }
     // reset the hints array
     setHints([]);
     // enable the next hint button
@@ -191,9 +196,21 @@ const Play = () => {
   }, []);
 
   const handleKeyboardSubmit = (submittedWord) => {
-    // You can use the submittedWord to check it against the word handled in the Play component
-   
-
+    // check if submitted word has correct length and bring up message if not
+    if (submittedWord.length !== ranWord.length) {
+      const newHint = document.createElement("div");
+      newHint.classList.add("incorrect");
+      newHint.textContent = "Try again, This word has " + ranWord.length + " letters";
+      document.getElementById("play-game").appendChild(newHint);
+    
+      // Set a timeout to remove the hint after a specified duration (e.g., 2000 milliseconds or 2 seconds)
+      setTimeout(() => {
+        // Remove the hint after the specified duration
+        newHint.remove();
+      }, 2000); // Adjust the duration as needed
+      return;
+    }
+    
     // check if submitted word is the same, if so reveal as correct
     if (submittedWord.toLowerCase() === ranWord.toLowerCase()) {
     //  create a div, fill it with the word, and append it to the hint box
@@ -201,7 +218,23 @@ const Play = () => {
     newHint.classList.add("correct");
     newHint.textContent = `CORRECT! it is ${ranWord}`;
     document.getElementById("play-game").appendChild(newHint);
+    } else {
+      // if not, check if there are common letters and display them
+      let commonLetters = "";
+      for (let i = 0; i < ranWord.length; i++) {
+        if (submittedWord.toLowerCase().includes(ranWord[i].toLowerCase())) {
+          commonLetters += ranWord[i];
+        } else {
+          commonLetters += "_";
+        }
+      }
+      // create a div, fill it with the common letters, and append it to the hint box
+      const newHint = document.createElement("div");
+      newHint.textContent = commonLetters;
+      document.getElementById("hint-box").appendChild(newHint);
     }
+
+  
 
     // You can access the current word from the state or other relevant variables
     // If it's correct, you can handle it accordingly
@@ -256,7 +289,7 @@ const Play = () => {
           </button>
           </Link>
         </div>
-        <Keyboard onKeyboardSubmit={handleKeyboardSubmit} />
+        <Keyboard id= "keyboard" onKeyboardSubmit={handleKeyboardSubmit} />
       </div>
     </div>
   );
