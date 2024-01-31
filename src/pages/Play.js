@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 const Play = () => {
   console.log("Component re-rendered");
-
   const loadStorage = () => {
     const loadedStorage = JSON.parse(localStorage.getItem("word-bank")) || [];
     return loadedStorage;
   };
 
+  const [ranWord, setRanWord] = useState("");
   const [wordBank, setWordBank] = useState(loadStorage());
   const [hints, setHints] = useState([]);
   const [currentHintIndex, setCurrentHintIndex] = useState(0);
@@ -32,8 +32,8 @@ const Play = () => {
           wordGen();
         } else {
           let wordCat = Math.floor(Math.random() * data.length);
-          console.log(data);
           console.log(ranWord);
+          setRanWord(ranWord);
           const hintDef = "def. " + data[wordCat].shortdef;
           const hintSyns =
             data[wordCat].meta.syns[
@@ -41,14 +41,11 @@ const Play = () => {
             ];
           const firstLetter =
             "It begins with " + ranWord.charAt(0).toUpperCase();
-          console.log(firstLetter);
           const lastLetter =
             "This is your last guess. It ends with " +
             ranWord.charAt(ranWord.length - 1).toUpperCase();
-          console.log(lastLetter);
           const synOneIndex = Math.floor(Math.random() * hintSyns.length);
           const synOne = "syn.1: " + hintSyns[synOneIndex];
-          console.log(synOne);
 
           let synTwoIndex;
 
@@ -57,10 +54,8 @@ const Play = () => {
           } while (synTwoIndex === synOneIndex);
 
           const synTwo = "syn.2: " + hintSyns[synTwoIndex];
-          console.log(synTwo);
 
           const speechPart = data[wordCat].fl;
-          console.log(speechPart);
           setCurrentHintIndex(1);
 
           const ranWordObj = {
@@ -118,16 +113,27 @@ const Play = () => {
     document.getElementById("hint-box").innerHTML = "";
     // reset the hint index
     setCurrentHintIndex(0);
+    // delete the div with class correct or incorrect if it exists
+    const message = document.querySelector(".alert");
+    if (message) {
+      message.remove();
+    }
+
     // reset the hints array
     setHints([]);
     // enable the next hint button
     document.getElementById("next-clue").disabled = false;
     document.getElementById("next-clue").textContent = "new hint";
+    document
+        .getElementById("next-clue")
+        .classList.remove("standard-button-disabled");
+        document
+        .getElementById("next-clue")
+        .classList.add("standard-button");
 
     // fetch a new word
     try {
       const data = wordGen();
-      console.log(data);
       const ranWord = data.word.toLowerCase();
 
       if (
@@ -190,6 +196,61 @@ const Play = () => {
     wordGen();
   }, []);
 
+  const handleKeyboardSubmit = (submittedWord) => {
+    // check if submitted word has correct length and bring up message if not
+    if (submittedWord.length !== ranWord.length) {
+      const newHint = document.createElement("div");
+      newHint.classList.add("incorrect");
+      newHint.textContent = "Try again, This word has " + ranWord.length + " letters";
+      document.getElementById("play-game").appendChild(newHint);
+    
+      // Set a timeout to remove the hint after a specified duration (e.g., 2000 milliseconds or 2 seconds)
+      setTimeout(() => {
+        // Remove the hint after the specified duration
+        newHint.remove();
+      }, 2000); // Adjust the duration as needed
+      return;
+    }
+    
+    // check if submitted word is the same, if so reveal as correct
+    if (submittedWord.toLowerCase() === ranWord.toLowerCase()) {
+    //  create a div, fill it with the word, and append it to the hint box
+    const message = document.createElement("h1");
+    message.classList.add("correct", "alert");
+    message.textContent = `CORRECT! it is ${ranWord}`;
+    document.getElementById("play-game").appendChild(message);
+    } else {
+      // if not, check if there are common letters and display them
+      let commonLetters = "";
+      for (let i = 0; i < ranWord.length; i++) {
+        if (submittedWord.toLowerCase().includes(ranWord[i].toLowerCase())) {
+          commonLetters += ranWord[i];
+        } else {
+          commonLetters += "_";
+        }
+      }
+      // create a div, fill it with the common letters, and append it to the hint box
+      const newHint = document.createElement("div");
+      newHint.textContent = commonLetters;
+      document.getElementById("hint-box").appendChild(newHint);
+      console.log(currentHintIndex)
+      if (currentHintIndex<5){
+      revealNextHint();}
+      else {
+        const message = document.createElement("h2");
+        message.classList.add("incorrect", "alert");
+        message.textContent = `Oooh, unlucky. Try again! The word was ${ranWord}`;
+        document.getElementById("play-game").appendChild(message);
+        
+      }
+    }
+
+  
+
+    // You can access the current word from the state or other relevant variables
+    // If it's correct, you can handle it accordingly
+  };
+
   return (
     <div className="main-container">
       <section id="play-game">
@@ -239,7 +300,7 @@ const Play = () => {
           </button>
           </Link>
         </div>
-        <Keyboard />
+        <Keyboard id= "keyboard" onKeyboardSubmit={handleKeyboardSubmit} />
       </div>
     </div>
   );

@@ -103,3 +103,20 @@ h5 {
     margin-bottom: 1rem;
     width: 90%;
 }
+
+.alert{   
+     text-align: center;
+    font-size: 3rem;
+    /* font-weight: bolder; */
+    margin: 0;
+}
+
+.correct{
+    color: green;
+}
+
+.incorrect{
+    color: red;
+}
+
+
