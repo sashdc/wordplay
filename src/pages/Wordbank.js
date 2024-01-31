@@ -1,55 +1,94 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import '../styles/wordbank.css';
 
 const Wordbank = () => {
+  let loadedStorage = JSON.parse(localStorage.getItem('word-bank')) || [];
+
+  const [modalContent, setModalContent] = useState({
+    word: '',
+    speechPart: '',
+    definition: '',
+    synonym: [],
+    DictionaryLink: '',
+  });
+
+  const handleWordButtonClick = (word) => {
+    const selectedWord = loadedStorage.find((item) => item.word === word);
+
+    if (selectedWord) {
+      setModalContent(selectedWord);
+      // Show the modal
+      document.getElementById('wordModal').style.display = 'block';
+    }
+  };
+
+  const handleCloseModal = () => {
+    // Hide the modal
+    document.getElementById('wordModal').style.display = 'none';
+  };
+
+  const deleteWord = () => {
+    // Remove the word from the word bank
+    const newWordBank = loadedStorage.filter((item) => item.word !== modalContent.word);
+    localStorage.setItem('word-bank', JSON.stringify(newWordBank));
+    // Hide the modal
+    document.getElementById('wordModal').style.display = 'none';
+    // Reload the page
+    window.location.reload();
+  }
+
+
   return (
     <div className="main-container">
-       <section>
-          <div className="m-3 row justify-content-between align-items-center">
-            <h2>wordbank: </h2>
-            <Link to="/">
-            <button id="home-button" className="standard-button" type="button">home</button>
-            </Link>
-          </div>
-          <div className="my-section">
-            <div id="word-bank" className="mt-5 d-flex w-100 flex-wrap justify-content-around">
-              {/* <!-- Wordbank word buttons appended here --> */}
-              {/* <!-- modal to show details --> */}
-            </div>
-            <div id="statusbar" className="row w-75 m-2 pb-3">
-                <h4 id="win-rate">win stats:</h4>
-                {/* <!-- Bulma stats bar --> */}
-                  <progress id="statusbar-win" className="progress is-link" value="0" max="100">wins</progress>
-            </div>
-          </div>
-        </section>
-
-    {/* // <!-- Modal --> */}
-    <div className="modal fade word-wrap" id="wordModal" tabindex="-1" role="dialog" aria-labelledby="selected word details" aria-hidden="true">
-        <div className="modal-dialog flex-wrap" role="document">
-          <div className="modal-content p-3">
-            <div className="modal-header">
-              <h5 className="modal-title font-weight-bold" id="modal-title">
-                {/* <!-- Push Word Here--> */}
-                </h5>
-              <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            {/* <!-- Push word content here --> */}
-            <div className="modal-body text-break">
-              <p id="part-speech" ></p>
-              <p id="word-definition" className="font-italic"></p>
-              <p id="word-synonym" className="text-break font-italic"></p>
-              <p><a id="dict-link" href="" target="_blank">See the dictionary entry</a></p>
-              <button type="button" className="btn btn-secondary" id="delete-word">Delete Word</button>
-            </div>
+      <section>
+        <div className="m-3 row justify-content-between align-items-center">
+          <h2>wordbank: </h2>
+          <Link to="/">
+            <button id="home-button" className="standard-button" type="button">
+              home
+            </button>
+          </Link>
         </div>
-      </div>
+        <div className="my-section">
+          <div id="word-bank" className="mt-5 d-flex w-100 flex-wrap justify-content-around">
+            {/* map over loadedStorage to generate buttons of each word */}
+            {loadedStorage.map((word, index) => (
+              <button
+                key={index}
+                className="wordbutton"
+                id={word.word}
+                onClick={() => handleWordButtonClick(word.word)}
+              >
+                {word.word}
+              </button>
+            ))}
+            {/* <!-- modal to show details --> */}
+            {/* Example Modal: */}
+            <div id="wordModal" className="modal" style={{ display: 'none' }}>
+              <div className="modal-content">
+                <span className="close" onClick={handleCloseModal}>&times;</span>
+                
+                <h2>{modalContent.word}</h2>
+                <p>{modalContent.speechPart}</p>
+                <p>{modalContent.definition}</p>
+                <p>Synonyms: {modalContent.synonym.join(', ')}</p>
+                <a href={modalContent.DictionaryLink} target='blank' className='dictionary-link-button'>Dictionary Link</a>
+                <span className='delete-word-button' onClick={deleteWord}>Delete Word</span>
+              </div>
+            </div>
+          </div>
+          <div id="statusbar" className="row w-75 m-2 pb-3">
+            <h4 id="win-rate">win stats:</h4>
+            {/* <!-- Bulma stats bar --> */}
+            <progress id="statusbar-win" className="progress is-link" value="0" max="100">
+              wins
+            </progress>
+          </div>
+        </div>
+      </section>
     </div>
-    </div>
+  );
+};
 
-  )
-}
-
-export default Wordbank
+export default Wordbank;
