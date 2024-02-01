@@ -116,7 +116,7 @@ const Play = () => {
     setCurrentHintIndex(0);
     // delete the div with class correct or incorrect if it exists
     messageArea.textContent = ""
-
+    messageArea.setAttribute("class", "");
     // reset the hints array
     setHints([]);
     // enable the next hint button
@@ -195,16 +195,15 @@ const Play = () => {
   const handleKeyboardSubmit = (submittedWord) => {
     // check if submitted word has correct length and bring up message if not
     if (submittedWord.length !== ranWord.length) {
-      const newHint = document.createElement("div");
-      newHint.classList.add("incorrect");
-      newHint.textContent =
+      messageArea.classList.add("incorrect");
+      messageArea.textContent =
         "Try again, This word has " + ranWord.length + " letters";
-      document.getElementById("play-game").appendChild(newHint);
 
       // Set a timeout to remove the hint after a specified duration
       setTimeout(() => {
         // Remove the hint after the specified duration
-        newHint.remove();
+        messageArea.textContent = "";
+        messageArea.classList.remove("incorrect");
       }, 2000); // Adjust the duration as needed
       return;
     }
@@ -233,8 +232,8 @@ const Play = () => {
         revealNextHint();
       } else {
         const message = document.createElement("h2");
-        message.classList.add("incorrect", "alert");
-        message.textContent = `Oooh, unlucky. Try again! The word was ${ranWord}`;
+        messageArea.classList.add("incorrect");
+        messageArea.textContent = `Oooh, unlucky. Try again! The word was ${ranWord}`;
         document.getElementById("play-game").appendChild(message);
       }
     }
