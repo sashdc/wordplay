@@ -7,6 +7,8 @@ const Play = () => {
   console.log("Component re-rendered");
   let nextHintButton = document.getElementById("next-clue");
   let messageArea = document.getElementById("message-area");
+  let letterBankDiv = document.getElementById("letter-bank");
+
   const loadStorage = () => {
     const loadedStorage = JSON.parse(localStorage.getItem("word-bank")) || [];
     return loadedStorage;
@@ -17,6 +19,7 @@ const Play = () => {
   const [hints, setHints] = useState([]);
   const [currentHintIndex, setCurrentHintIndex] = useState(0);
   const [loading, setLoading] = useState(true); // New state for loading
+
 
   const getHints = (ranWord) => {
     setLoading(true); // Set loading to true when fetching hints
@@ -110,6 +113,7 @@ const Play = () => {
   };
 
   const newWord = async () => {
+    letterBankDiv.innerText = "";
     // clear the hint box
     document.getElementById("hint-box").innerHTML = "";
     // reset the hint index
@@ -216,18 +220,43 @@ const Play = () => {
     } else {
       // if not, check if there are common letters and display them
       let commonLetters = "";
+
+      // Count occurrences of each letter in ranWord
+      const ranWordLetterCount = new Map();
+      for (let letter of ranWord.toLowerCase()) {
+        ranWordLetterCount.set(letter, (ranWordLetterCount.get(letter) || 0) + 1);
+      }
+      
       for (let i = 0; i < ranWord.length; i++) {
         if (submittedWord.toLowerCase().includes(ranWord[i].toLowerCase())) {
           commonLetters += ranWord[i];
-        } else {
-          commonLetters += "_";
+          console.log(commonLetters);
         }
       }
-      // create a div, fill it with the common letters, and append it to the hint box
-      const newHint = document.createElement("div");
-      newHint.textContent = commonLetters;
-      document.getElementById("hint-box").appendChild(newHint);
-      console.log(currentHintIndex);
+      
+      // Convert commonLetters to an array and sort it alphabetically
+      const sortedLettersArray = Array.from(commonLetters.toLowerCase()).sort();
+      
+      // Check if the letter is not already in the letter bank before adding it
+      for (let letter of sortedLettersArray) {
+        const letterToAdd = letter.toUpperCase(); // Ensure the letter is in uppercase
+          
+        if (!letterBankDiv.innerText.includes(letterToAdd)) {
+          // Add the letter to the letter bank
+          const occurrencesInSubmittedWord = submittedWord.toLowerCase().split(letter).length - 1;
+          const occurrencesInRanWord = ranWordLetterCount.get(letter) || 0;
+          const occurrencesToAdd = Math.max(occurrencesInSubmittedWord, occurrencesInRanWord);
+          
+          for (let i = 0; i < occurrencesToAdd; i++) {
+            letterBankDiv.innerText += letterToAdd + ',';
+          }
+        }
+      }
+      
+      // Remove the trailing comma if it exists
+      letterBankDiv.innerText = letterBankDiv.innerText.replace(/,$/, '');
+      
+
       if (currentHintIndex < 5) {
         revealNextHint();
       } else {
@@ -255,8 +284,10 @@ const Play = () => {
           )}
           {/* Button to reveal the next hint */}
         </div>
+        
         <div id="message-area" className=""></div>
       <div id="user-input-area">
+      <div id="letter-bank" ></div>
         <div
           id="game-button-area"
           className="row "
