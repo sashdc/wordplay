@@ -11,6 +11,11 @@
   justify-content: center;
 }
 
+::selection {
+  background-color: #ff1616;
+  color: white;
+}
+
 h1,
 h2,
 h3,
@@ -47,11 +52,7 @@ h4 {
   }
 }
 
-.subtitle {
-  text-align: left;
-  width: fit-content;
-  padding-left: 30%;
-}
+
 
 h5 {
   font-family: "Open Sans", serif;
@@ -118,3 +119,23 @@ h5 {
 }
 
 /* End of universal styles */
+
+/* Media Query */
+@media screen and (max-width: 768px) {
+  .home-buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main-container{
+    margin: 8% auto;
+    height: 98vh;
+    width: 98vw;
+    padding: 0px;
+  }
+  .standard-button{
+    margin: 10px;
+  }
+
+}
