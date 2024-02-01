@@ -6,7 +6,7 @@ import "../styles/play.css";
 const Play = () => {
   console.log("Component re-rendered");
   let nextHintButton = document.getElementById("next-clue");
-
+  let messageArea = document.getElementById("message-area");
   const loadStorage = () => {
     const loadedStorage = JSON.parse(localStorage.getItem("word-bank")) || [];
     return loadedStorage;
@@ -115,10 +115,7 @@ const Play = () => {
     // reset the hint index
     setCurrentHintIndex(0);
     // delete the div with class correct or incorrect if it exists
-    const message = document.querySelector(".alert");
-    if (message) {
-      message.remove();
-    }
+    messageArea.textContent = ""
 
     // reset the hints array
     setHints([]);
@@ -214,11 +211,9 @@ const Play = () => {
 
     // check if submitted word is the same, if so reveal as correct
     if (submittedWord.toLowerCase() === ranWord.toLowerCase()) {
-      //  create a div, fill it with the word, and append it to the hint box
-      const message = document.createElement("h1");
-      message.classList.add("correct", "alert");
-      message.textContent = `CORRECT! it is ${ranWord}`;
-      document.getElementById("play-game").appendChild(message);
+      // add correct class to the message area
+      messageArea.classList.add("correct");
+      messageArea.textContent = `CORRECT! it is ${ranWord}`;
     } else {
       // if not, check if there are common letters and display them
       let commonLetters = "";
@@ -261,8 +256,7 @@ const Play = () => {
           )}
           {/* Button to reveal the next hint */}
         </div>
-      </section>{" "}
-      {/* a box with as many dashes as ranWord.length */}
+        <div id="message-area" className=""></div>
       <div id="user-input-area">
         <div
           id="game-button-area"
@@ -299,6 +293,8 @@ const Play = () => {
         </div>
         <Keyboard id="keyboard" onKeyboardSubmit={handleKeyboardSubmit} />
       </div>
+      </section>
+
     </div>
   );
 };

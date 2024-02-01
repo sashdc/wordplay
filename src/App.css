@@ -122,15 +122,12 @@ h5 {
 
 /* Media Query */
 @media screen and (max-width: 768px) {
-  .home-buttons{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+
 
   .main-container{
-    margin: 8% auto;
-    height: 98vh;
+    border: 6px solid #031c3d;
+    margin: 40px auto;
+    height: 99vh;
     width: 98vw;
     padding: 0px;
   }

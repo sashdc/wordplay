@@ -2,12 +2,18 @@
     height: 400px;
     font-style: italic;
     font-size: 1.5rem;
-    margin: 3% 1%;
+    margin: 2% 0% 0% 0;
   }
   
 
 #play-game {
-    width: 90%;
+    width: 95%;
+    height:max-content;
+    /* margin: 0 auto; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between ;
   }
   
   #user-input-area {
@@ -15,11 +21,12 @@
     width: 90%;
   }
   
-  .alert {
+  #message-area {
     text-align: center;
-    font-size: 3rem;
+    font-size: 2rem;
     /* font-weight: bolder; */
     margin: 0;
+    font-family: "Rokkitt", serif;
   }
   
   .correct {
@@ -30,3 +37,5 @@
     color: red;
   }
 
+  @media screen and (max-width: 768px) {
+  }
