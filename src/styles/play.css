@@ -98,5 +98,17 @@
   @media screen and (max-width: 1000px) {
     #play-game {
       width: 100%;
+      margin: 0 auto;
     }
   }
+
+  @media screen and (max-width: 768px) {
+    #game-button-area{
+justify-content: space-around;
+    }
+    #letter-bank{
+      width: 100%;
+    }
+
+  }
+  
