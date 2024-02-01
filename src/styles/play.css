@@ -8,6 +8,7 @@
     font-style: italic;
     font-size: 1.5rem;
     overflow-y: scroll;
+    color: var(--primary-color)
   }
 
   
@@ -40,7 +41,7 @@
   margin: 0 auto;
    letter-spacing: .25em;
   background-color: var(--quaternary-color);
-  color: var(--primary-color);
+  color: var(--senary-color);
   font-family: 'Indie Flower';
   border-radius: 12px;
   /* padding: 10px; */
@@ -59,18 +60,39 @@
   #message-area {
     text-align: center;
     font-size: 2rem;
-    /* font-weight: bolder; */
-    margin: 0;
+    font-weight: bolder;
+    margin-bottom: .5rem;
     height:2rem;
     font-family: "Rokkitt", serif;
   }
   
+  @keyframes celebration {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
   .correct {
     color: green;
+    animation : celebration 1s infinite;
+
   }
   
   .incorrect {
     color: var(--secondary-color);
+    animation : sad 1s infinite;
+  }
+
+  @keyframes sad {
+    0% { transform: translateY(0); color: var(--secondary-color); }
+    50% { transform: translateY(-1px); color: #555; }
+    100% { transform: translateY(0); color: var(--secondary-color); }
   }
 
   @media screen and (max-width: 1000px) {

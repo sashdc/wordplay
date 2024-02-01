@@ -1,6 +1,6 @@
 /* Universal styles */
 :root {
-  --primary-color: #042267; /*dark blue */ 
+  --primary-color: #042e8e; /*dark blue */ 
   --secondary-color: #E71d36; /*red */
   --tertiary-color: #FBFEF9; /*near-white */
   --quaternary-color: #d7d7d7; /*light grey */
@@ -32,6 +32,7 @@ h2,
 h3,
 h4 {
   font-family: "Rokkitt", serif;
+  color: var(--primary-color);
 }
 
 .main-container {
@@ -96,7 +97,7 @@ h5 {
   margin: 20px 10px;
   padding: 5px 30px;
   border-radius: 10px;
-  background-color: var(--quinary-color);
+  background-color: var(--tertiary-color);
   border: 4px solid var(--secondary-color);
 }
 

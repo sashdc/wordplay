@@ -2,19 +2,27 @@
 overflow-y: scroll
 }
 
+#word-bank{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: .15rem;
+}
+
 .wordbutton {
     padding: .2rem 2rem;
     border-radius: 20px;
     border: none;
     margin: .5rem;
     background-color: var(--quaternary-color);
+    color: var(--primary-color);
 }
 
 .wordbutton:hover {
     background-color: var(--quinary-color);
     color: var(--tertiary-color);
 }
-
 
 #wordModal{
     display: none;

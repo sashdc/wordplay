@@ -8,10 +8,18 @@ const Home = () => {
     <div className="main-container">
       <section id="home-page" className="home-page">
           <div className=" custom-title ">
-            wordplay
+          <span>w</span>
+                <span>o</span>
+                <span>r</span>
+                <span>d</span>
+                <span>p</span>
+                <span>l</span>
+                <span>a</span>
+                <span>y</span>
+
           </div>
           <div className="subtitle">
-            <p className="lead  ">word.play | \ ˈwərd-ˌplā</p>
+            <p className="">word.play | \ ˈwərd-ˌplā</p>
             <p className="lead">
               <i>1. def. playful use of words: verbal wit</i>
             </p>

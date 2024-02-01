@@ -70,7 +70,7 @@ const Wordbank = () => {
         <div className="my-section">
           <div
             id="word-bank"
-            className="mt-5 d-flex w-100 flex-wrap justify-content-around"
+            className=""
           >
             {/* map over loadedStorage to generate buttons of each word */}
             {loadedStorage.map((word, index) => (

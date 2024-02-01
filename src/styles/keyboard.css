@@ -7,7 +7,7 @@
   margin-bottom: 10px;
   height: 2.2em;
   background-color: var(--senary-color);
-  color: var(--quinary-color);
+  color: var(--quaternary-color);
   font-family: "Rokkitt", serif;
   border-radius: 12px;
   padding: 10px;
@@ -20,7 +20,7 @@
   display: inline-block;
   width: 0.1em;
   height: 20px;
-  background-color: var(--quinary-color);
+  background-color: var(--quaternary-color);
   animation: cursor 0.7s infinite;
   margin: 0 2px;
 }
