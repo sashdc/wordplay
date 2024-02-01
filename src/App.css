@@ -66,12 +66,14 @@ h5 {
   letter-spacing: 0.1rem;
   text-align: center;
   color: white;
+  width: 10em;
   margin: 0px 10px;
-  padding: 5px 30px;
+  padding: 5px 0px;
   border-radius: 10px;
   background-color: #ff1616;
   border: 4px solid #ff1616;
 }
+
 .standard-button:hover {
   background-color: white;
   color: #031c3d;

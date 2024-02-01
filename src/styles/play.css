@@ -1,5 +1,7 @@
 #hint-area {
     height: 400px;
+    width: 90%;
+    margin: 5px auto 0 auto;
     font-style: italic;
     font-size: 1.5rem;
     /* margin: 2% 0% 0% 0; */
@@ -9,11 +11,26 @@
 #play-game {
     width: 95%;
     height:max-content;
-    margin: 3% auto;
+    margin: auto auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between ;
+    align-self: stretch;
+  }
+
+  #game-button-area{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+
+  .game-button{
+    margin: 10px;
   }
   
   #user-input-area {
@@ -38,5 +55,8 @@
     color: red;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1000px) {
+    #play-game {
+      width: 100%;
+    }
   }

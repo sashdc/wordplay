@@ -259,11 +259,11 @@ const Play = () => {
       <div id="user-input-area">
         <div
           id="game-button-area"
-          className="row d-flex justify-content-center align-items-center"
+          className="row "
         >
           <button
             id="next-clue"
-            className="standard-button m-2 text-center"
+            className="standard-button game-button"
             onClick={revealNextHint}
             disabled={loading} 
           >
@@ -271,7 +271,7 @@ const Play = () => {
           </button>
           <button
             id="newWord"
-            className="m-2 standard-button text-center"
+            className="standard-button game-button"
             onClick={newWord}
           >
             new word
@@ -284,7 +284,7 @@ const Play = () => {
           <Link to="/wordbank">
             <button
               id="gameplay-wordbankbutton"
-              className="m-2 standard-button text-center"
+              className=" standard-button game-button"
             >
               wordbank
             </button>
