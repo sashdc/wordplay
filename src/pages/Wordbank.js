@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import '../styles/wordbank.css';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "../styles/wordbank.css";
 
 const Wordbank = () => {
-  let loadedStorage = JSON.parse(localStorage.getItem('word-bank')) || [];
+  let loadedStorage = JSON.parse(localStorage.getItem("word-bank")) || [];
 
   const [modalContent, setModalContent] = useState({
-    word: '',
-    speechPart: '',
-    definition: '',
+    word: "",
+    speechPart: "",
+    definition: "",
     synonym: [],
-    DictionaryLink: '',
+    DictionaryLink: "",
   });
 
   useEffect(() => {
-    const modal = document.getElementById('wordModal');
+    const modal = document.getElementById("wordModal");
 
     const handleOutsideClick = (event) => {
       if (event.target === modal) {
@@ -22,10 +22,10 @@ const Wordbank = () => {
       }
     };
 
-    modal.addEventListener('click', handleOutsideClick);
+    modal.addEventListener("click", handleOutsideClick);
 
     return () => {
-      modal.removeEventListener('click', handleOutsideClick);
+      modal.removeEventListener("click", handleOutsideClick);
     };
   }, []);
 
@@ -35,21 +35,23 @@ const Wordbank = () => {
     if (selectedWord) {
       setModalContent(selectedWord);
       // Show the modal
-      document.getElementById('wordModal').style.display = 'block';
+      document.getElementById("wordModal").style.display = "block";
     }
   };
 
   const handleCloseModal = () => {
     // Hide the modal
-    document.getElementById('wordModal').style.display = 'none';
+    document.getElementById("wordModal").style.display = "none";
   };
 
   const deleteWord = () => {
     // Remove the word from the word bank
-    const newWordBank = loadedStorage.filter((item) => item.word !== modalContent.word);
-    localStorage.setItem('word-bank', JSON.stringify(newWordBank));
+    const newWordBank = loadedStorage.filter(
+      (item) => item.word !== modalContent.word
+    );
+    localStorage.setItem("word-bank", JSON.stringify(newWordBank));
     // Hide the modal
-    document.getElementById('wordModal').style.display = 'none';
+    document.getElementById("wordModal").style.display = "none";
     // Reload the page
     window.location.reload();
   };
@@ -66,7 +68,10 @@ const Wordbank = () => {
           </Link>
         </div>
         <div className="my-section">
-          <div id="word-bank" className="mt-5 d-flex w-100 flex-wrap justify-content-around">
+          <div
+            id="word-bank"
+            className="mt-5 d-flex w-100 flex-wrap justify-content-around"
+          >
             {/* map over loadedStorage to generate buttons of each word */}
             {loadedStorage.map((word, index) => (
               <button
@@ -80,7 +85,7 @@ const Wordbank = () => {
             ))}
             {/* <!-- modal to show details --> */}
             {/* Example Modal: */}
-            <div id="wordModal" className="modal" style={{ display: 'none' }}>
+            <div id="wordModal" className="modal" style={{ display: "none" }}>
               <div className="modal-content">
                 <span className="close-modal-button" onClick={handleCloseModal}>
                   &times;
@@ -89,8 +94,12 @@ const Wordbank = () => {
                 <h2>{modalContent.word}</h2>
                 <p>{modalContent.speechPart}</p>
                 <p>{modalContent.definition}</p>
-                <p>Synonyms: {modalContent.synonym.join(', ')}</p>
-                <a href={modalContent.DictionaryLink} target="blank" className="dictionary-link-button">
+                <p>Synonyms: {modalContent.synonym.join(", ")}</p>
+                <a
+                  href={modalContent.DictionaryLink}
+                  target="blank"
+                  className="dictionary-link-button"
+                >
                   Dictionary Link
                 </a>
                 <span className="delete-word-button" onClick={deleteWord}>
@@ -99,15 +108,20 @@ const Wordbank = () => {
               </div>
             </div>
           </div>
-          <div id="statusbar" className="row w-75 m-2 pb-3">
-            <h4 id="win-rate">win stats:</h4>
-            {/* <!-- Bulma stats bar --> */}
-            <progress id="statusbar-win" className="progress is-link" value="0" max="100">
-              wins
-            </progress>
-          </div>
         </div>
       </section>
+      <div id="statusbar" className="row ">
+        <h4 id="win-rate">win stats:</h4>
+        {/* <!-- Bulma stats bar --> */}
+        <progress
+          id="statusbar-win"
+          className="progress is-link"
+          value="0"
+          max="100"
+        >
+          wins
+        </progress>
+      </div>
     </div>
   );
 };

@@ -1,14 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
 
-
 .selected-letters {
   font-size: 24px;
   width: 60%;
   margin: 0 auto;
   margin-bottom: 10px;
   height: 2.2em;
-  background-color: #b0b0b0;
-  color: whitesmoke;
+  background-color: var(--senary-color);
+  color: var(--quinary-color);
   font-family: "Rokkitt", serif;
   border-radius: 12px;
   padding: 10px;
@@ -21,7 +20,7 @@
   display: inline-block;
   width: 0.1em;
   height: 20px;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--quinary-color);
   animation: cursor 0.7s infinite;
   margin: 0 2px;
 }
@@ -61,7 +60,8 @@
   border-radius: 12px;
   padding: 10px;
   font-size: 18px;
-  background-color: #e0e0e0;
+  background-color: var(--quaternary-color);
+  color: var(--primary-color);
   cursor: pointer;
   user-select: none;
   transition: background-color 0.3s;
@@ -73,14 +73,13 @@
 }
 
 .keyboard-key:active {
-  background-color: #000900;
+  background-color: var(--primary-color);
   color: white;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 @media screen and (max-width: 768px) {
   .selected-letters {
-       width: 80%;
+    width: 80%;
   }
-
 }

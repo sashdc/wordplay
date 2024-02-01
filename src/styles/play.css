@@ -39,8 +39,8 @@
   height: 38px;
   margin: 0 auto;
    letter-spacing: .25em;
-  background-color: #f5f5f5;
-  color: rgb(0, 0, 0);
+  background-color: var(--quaternary-color);
+  color: var(--primary-color);
   font-family: 'Indie Flower';
   border-radius: 12px;
   /* padding: 10px; */
@@ -52,8 +52,7 @@
   }
   
   #user-input-area {
-    
-    margin-bottom: 1rem;
+        /* margin-bottom: 1rem; */
     width: 90%;
   }
   
@@ -71,7 +70,7 @@
   }
   
   .incorrect {
-    color: red;
+    color: var(--secondary-color);
   }
 
   @media screen and (max-width: 1000px) {

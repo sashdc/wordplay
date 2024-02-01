@@ -1,19 +1,30 @@
 /* Universal styles */
+:root {
+  --primary-color: #042267; /*dark blue */ 
+  --secondary-color: #E71d36; /*red */
+  --tertiary-color: #FBFEF9; /*near-white */
+  --quaternary-color: #d7d7d7; /*light grey */
+  --quinary-color: #a1a1a1; /*dark grey */
+  --senary-color: #919191;
+  /* --septenary-color: #f4f4f4; */
+  /* --octonary-color: #f4f4f4; */
+  /* --nonary-color: #f4f4f4; */
+  /* --denary-color: #f4f4f4; */
+}
 
 @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
 
 * {
   padding: 0;
   margin: 0;
-  color: #031c3d;
   font-family: "Open Sans", sans-serif;
   align-items: center;
   justify-content: center;
 }
 
 ::selection {
-  background-color: #ff1616;
-  color: white;
+  background-color: var(--secondary-color);
+  color: var(--tertiary-color);
 }
 
 h1,
@@ -24,7 +35,7 @@ h4 {
 }
 
 .main-container {
-  border: 15px solid #031c3d;
+  border: 15px solid var(--primary-color);
   margin: 50px;
   min-height: 90vh;
   max-height: 90vh;
@@ -52,8 +63,6 @@ h4 {
   }
 }
 
-
-
 h5 {
   font-family: "Open Sans", serif;
   font-style: italic;
@@ -61,42 +70,40 @@ h5 {
   margin-bottom: 1.5rem;
 }
 
-
 .standard-button {
   letter-spacing: 0.1rem;
   text-align: center;
-  color: white;
+  color: var(--tertiary-color);
   width: 9em;
   margin: 10px;
   padding: 5px 0px;
   border-radius: 10px;
-  background-color: #ff1616;
-  border: 4px solid #ff1616;
+  background-color: var(--secondary-color);
+  border: 4px solid var(--secondary-color);
 }
 
 .standard-button:hover {
-  background-color: white;
-  color: #031c3d;
-  border: 4px solid #031c3d;
+  background-color: var(--tertiary-color);
+  color: var(--primary-color);
+  border: 4px solid var(--primary-color);
   cursor: pointer;
 }
 
 .standard-button-disabled {
   letter-spacing: 0.1rem;
   text-align: center;
-  color: #ff1616;
+  color: var(--secondary-color);
   margin: 20px 10px;
   padding: 5px 30px;
   border-radius: 10px;
-  background-color: white;
-  border: 4px solid #ff1616;
+  background-color: var(--quinary-color);
+  border: 4px solid var(--secondary-color);
 }
 
 /* custom scrollbar */
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
-
 }
 
 /* Track */
@@ -105,46 +112,40 @@ h5 {
   margin-top: 25px;
   margin-bottom: 25px;
   border-radius: 10px;
-
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #031c3d;
+  background: var(--primary-color);
   border-radius: 10px;
-  
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--quaternary-color);
 }
 
 /* End of universal styles */
 
 /* Media Query */
 @media screen and (max-width: 768px) {
-
-
-  .main-container{
-    border: 6px solid #031c3d;
+  .main-container {
+    border: 6px solid var(--primary-color);
     margin: 40px auto;
     height: 99vh;
     width: 98vw;
     padding: 0px;
   }
-  .standard-button{
+  .standard-button {
     margin: 10px;
   }
-
 }
 
 @media screen and (max-width: 450px) {
-.standard-button{
-  width: 8em;
-  margin: 5px;
-  padding: 1px 0px;
-  letter-spacing: 0.05rem;
-}
-
+  .standard-button {
+    width: 8em;
+    margin: 5px;
+    padding: 1px 0px;
+    letter-spacing: 0.05rem;
+  }
 }

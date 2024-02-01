@@ -20,7 +20,6 @@ const Play = () => {
   const [currentHintIndex, setCurrentHintIndex] = useState(0);
   const [loading, setLoading] = useState(true); // New state for loading
 
-
   const getHints = (ranWord) => {
     setLoading(true); // Set loading to true when fetching hints
     fetch(
@@ -38,7 +37,6 @@ const Play = () => {
           wordGen();
         } else {
           let wordCat = Math.floor(Math.random() * data.length);
-          console.log(ranWord);
           setRanWord(ranWord);
           const hintDef = "def. " + data[wordCat].shortdef;
           const hintSyns =
@@ -119,7 +117,7 @@ const Play = () => {
     // reset the hint index
     setCurrentHintIndex(0);
     // delete the div with class correct or incorrect if it exists
-    messageArea.textContent = ""
+    messageArea.textContent = "";
     messageArea.setAttribute("class", "");
     // reset the hints array
     setHints([]);
@@ -191,7 +189,6 @@ const Play = () => {
 
   useEffect(() => {
     // Fetch a new word and its hints on component mount
-    console.log("useEffect is running");
     setLoading(true); // Set loading to true on component mount
     wordGen();
   }, []);
@@ -224,38 +221,43 @@ const Play = () => {
       // Count occurrences of each letter in ranWord
       const ranWordLetterCount = new Map();
       for (let letter of ranWord.toLowerCase()) {
-        ranWordLetterCount.set(letter, (ranWordLetterCount.get(letter) || 0) + 1);
+        ranWordLetterCount.set(
+          letter,
+          (ranWordLetterCount.get(letter) || 0) + 1
+        );
       }
-      
+
       for (let i = 0; i < ranWord.length; i++) {
         if (submittedWord.toLowerCase().includes(ranWord[i].toLowerCase())) {
           commonLetters += ranWord[i];
-          console.log(commonLetters);
         }
       }
-      
+
       // Convert commonLetters to an array and sort it alphabetically
       const sortedLettersArray = Array.from(commonLetters.toLowerCase()).sort();
-      
+
       // Check if the letter is not already in the letter bank before adding it
       for (let letter of sortedLettersArray) {
         const letterToAdd = letter.toUpperCase(); // Ensure the letter is in uppercase
-          
+
         if (!letterBankDiv.innerText.includes(letterToAdd)) {
           // Add the letter to the letter bank
-          const occurrencesInSubmittedWord = submittedWord.toLowerCase().split(letter).length - 1;
+          const occurrencesInSubmittedWord =
+            submittedWord.toLowerCase().split(letter).length - 1;
           const occurrencesInRanWord = ranWordLetterCount.get(letter) || 0;
-          const occurrencesToAdd = Math.max(occurrencesInSubmittedWord, occurrencesInRanWord);
-          
+          const occurrencesToAdd = Math.max(
+            occurrencesInSubmittedWord,
+            occurrencesInRanWord
+          );
+
           for (let i = 0; i < occurrencesToAdd; i++) {
-            letterBankDiv.innerText += letterToAdd + ',';
+            letterBankDiv.innerText += letterToAdd + ",";
           }
         }
       }
-      
+
       // Remove the trailing comma if it exists
-      letterBankDiv.innerText = letterBankDiv.innerText.replace(/,$/, '');
-      
+      letterBankDiv.innerText = letterBankDiv.innerText.replace(/,$/, "");
 
       if (currentHintIndex < 5) {
         revealNextHint();
@@ -284,47 +286,43 @@ const Play = () => {
           )}
           {/* Button to reveal the next hint */}
         </div>
-        
-        <div id="message-area" className=""></div>
-      <div id="user-input-area">
-      <div id="letter-bank" ></div>
-        <div
-          id="game-button-area"
-          className="row "
-        >
-          <button
-            id="next-clue"
-            className="standard-button game-button"
-            onClick={revealNextHint}
-            disabled={loading} 
-          >
-            new hint
-          </button>
-          <button
-            id="newWord"
-            className="standard-button game-button"
-            onClick={newWord}
-          >
-            new word
-          </button>
-          <Link to="/">
-            <button id="home-btn" className="standard-button" type="button">
-              home
-            </button>
-          </Link>
-          <Link to="/wordbank">
-            <button
-              id="gameplay-wordbankbutton"
-              className=" standard-button game-button"
-            >
-              wordbank
-            </button>
-          </Link>
-        </div>
-        <Keyboard id="keyboard" onKeyboardSubmit={handleKeyboardSubmit} />
-      </div>
-      </section>
 
+        <div id="message-area" className=""></div>
+        <div id="user-input-area">
+          <div id="letter-bank"></div>
+          <div id="game-button-area" className="row ">
+            <button
+              id="next-clue"
+              className="standard-button game-button"
+              onClick={revealNextHint}
+              disabled={loading}
+            >
+              new hint
+            </button>
+            <button
+              id="newWord"
+              className="standard-button game-button"
+              onClick={newWord}
+            >
+              new word
+            </button>
+            <Link to="/">
+              <button id="home-btn" className="standard-button" type="button">
+                home
+              </button>
+            </Link>
+            <Link to="/wordbank">
+              <button
+                id="gameplay-wordbankbutton"
+                className=" standard-button game-button"
+              >
+                wordbank
+              </button>
+            </Link>
+          </div>
+          <Keyboard id="keyboard" onKeyboardSubmit={handleKeyboardSubmit} />
+        </div>
+      </section>
     </div>
   );
 };
