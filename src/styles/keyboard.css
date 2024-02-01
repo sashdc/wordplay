@@ -84,7 +84,9 @@
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
-/* .keyboard-key.selected {
-  background-color: #4caf50;
-  color: white;
-} */
+@media screen and (max-width: 768px) {
+  .selected-letters {
+       width: 80%;
+  }
+
+}

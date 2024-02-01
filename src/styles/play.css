@@ -1,16 +1,18 @@
 #hint-area {
-    height: 400px;
+    height: 300px;
     width: 90%;
     margin: 5px auto 0 auto;
     font-style: italic;
     font-size: 1.5rem;
-    /* margin: 2% 0% 0% 0; */
+    overflow-y: scroll;
   }
+
+  
   
 
 #play-game {
     width: 95%;
-    height:max-content;
+    height:100%;
     margin: auto auto;
     display: flex;
     flex-direction: column;
@@ -26,7 +28,6 @@
     align-self: stretch;
     width: 100%;
     margin: 0;
-    margin-bottom: 10px;
   }
 
   .game-button{

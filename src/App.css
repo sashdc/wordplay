@@ -36,19 +36,19 @@ h4 {
 
 @keyframes rounder {
   0% {
-    border-radius: 0 0 0 80px;
+    border-radius: 0 0 0 50px;
   }
   25% {
-    border-radius: 80px 0 0 0px;
+    border-radius: 50px 0 0 0px;
   }
   50% {
-    border-radius: 0px 80px 0 0px;
+    border-radius: 0px 50px 0 0px;
   }
   75% {
-    border-radius: 0px 0 80px 0px;
+    border-radius: 0px 0 50px 0px;
   }
   100% {
-    border-radius: 0px 0 0px 80px;
+    border-radius: 0px 0 0px 50px;
   }
 }
 
@@ -66,8 +66,8 @@ h5 {
   letter-spacing: 0.1rem;
   text-align: center;
   color: white;
-  width: 10em;
-  margin: 0px 10px;
+  width: 9em;
+  margin: 10px;
   padding: 5px 0px;
   border-radius: 10px;
   background-color: #ff1616;
@@ -136,5 +136,15 @@ h5 {
   .standard-button{
     margin: 10px;
   }
+
+}
+
+@media screen and (max-width: 450px) {
+.standard-button{
+  width: 8em;
+  margin: 5px;
+  padding: 1px 0px;
+  letter-spacing: 0.05rem;
+}
 
 }
