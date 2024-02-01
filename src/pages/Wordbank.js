@@ -4,6 +4,9 @@ import "../styles/wordbank.css";
 
 const Wordbank = () => {
   let loadedStorage = JSON.parse(localStorage.getItem("word-bank")) || [];
+  let loadedScore = JSON.parse(localStorage.getItem("score")) || { played: 0, wins: 0, losses: 0 };
+
+ 
 
   const [modalContent, setModalContent] = useState({
     word: "",
@@ -68,10 +71,7 @@ const Wordbank = () => {
           </Link>
         </div>
         <div className="my-section">
-          <div
-            id="word-bank"
-            className=""
-          >
+          <div id="word-bank">
             {/* map over loadedStorage to generate buttons of each word */}
             {loadedStorage.map((word, index) => (
               <button
@@ -110,18 +110,13 @@ const Wordbank = () => {
           </div>
         </div>
       </section>
-      <div id="statusbar" className="row ">
-        <h4 id="win-rate">win stats:</h4>
-        {/* <!-- Bulma stats bar --> */}
-        <progress
-          id="statusbar-win"
-          className="progress is-link"
-          value="0"
-          max="100"
-        >
-          wins
-        </progress>
+      <div id="stats">
+        <h4>Games Played: {loadedScore.played} </h4>
+        <h4>Wins: {loadedScore.wins} </h4>
+        <h4>Losses: {loadedScore.losses} </h4>
+        <h4>Incomplete: {loadedScore.played - loadedScore.wins - loadedScore.losses}</h4>
       </div>
+     
     </div>
   );
 };

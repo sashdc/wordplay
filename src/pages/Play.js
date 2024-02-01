@@ -9,12 +9,20 @@ const Play = () => {
   let messageArea = document.getElementById("message-area");
   let letterBankDiv = document.getElementById("letter-bank");
 
+    // load score object from local storage
+    const loadScore = () => {
+      const loadedScore = JSON.parse(localStorage.getItem("score")) || { played: 0, wins: 0, losses: 0 };
+      return loadedScore;
+    };
+
   const loadStorage = () => {
     const loadedStorage = JSON.parse(localStorage.getItem("word-bank")) || [];
     return loadedStorage;
   };
 
+
   const [ranWord, setRanWord] = useState("");
+  const [score, setScore] = useState(loadScore());
   const [wordBank, setWordBank] = useState(loadStorage());
   const [hints, setHints] = useState([]);
   const [currentHintIndex, setCurrentHintIndex] = useState(0);
@@ -70,6 +78,9 @@ const Play = () => {
             DictionaryLink: `https://www.merriam-webster.com/dictionary/${ranWord}`,
           };
 
+          score.played += 1;
+          setScore(score);
+          localStorage.setItem("score", JSON.stringify(score));
           setWordBank([...wordBank, ranWordObj]);
           localStorage.setItem("word-bank", JSON.stringify(wordBank));
 
@@ -211,9 +222,13 @@ const Play = () => {
 
     // check if submitted word is the same, if so reveal as correct
     if (submittedWord.toLowerCase() === ranWord.toLowerCase()) {
+      // add to the score
+      score.wins += 1;
+      setScore(score);
+      localStorage.setItem("score", JSON.stringify(score));
       // add correct class to the message area
       messageArea.classList.add("correct");
-      messageArea.textContent = `CORRECT! it is ${ranWord}`;
+      messageArea.textContent = `Well done! It is ${ranWord}`;
     } else {
       // if not, check if there are common letters and display them
       let commonLetters = "";
@@ -262,10 +277,11 @@ const Play = () => {
       if (currentHintIndex < 5) {
         revealNextHint();
       } else {
-        const message = document.createElement("h2");
         messageArea.classList.add("incorrect");
         messageArea.textContent = `Oooh, unlucky. Try again! The word was ${ranWord}`;
-        document.getElementById("play-game").appendChild(message);
+        score.losses += 1;
+        setScore(score);
+        localStorage.setItem("score", JSON.stringify(score));  
       }
     }
     // You can access the current word from the state or other relevant variables
