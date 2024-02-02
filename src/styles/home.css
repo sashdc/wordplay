@@ -22,9 +22,9 @@
   font-family: "Rokkitt", serif;
   /* color: #f8f8f8; */
   display: inline-flex;
-  animation: rotate 10s infinite ;
+  animation: rotate 12s infinite, shadow-drop 6s infinite;
   animation-timing-function: ease-in-out;
-  text-shadow: 10px 10px 5px var(--quinary-color);
+  /* text-shadow: 10px 10px 5px var(--quinary-color); */
 }
 @keyframes rotate {
   0%,
@@ -33,6 +33,8 @@
       /* text-shadow: 7px 7px 5px var(--quinary-color); */
 
   }
+
+ 
 }
 .custom-title span:nth-of-type(1) {
   animation-delay: 0.2s;
@@ -59,6 +61,17 @@
   animation-delay: 1.6s;
 }
 
+@keyframes shadow-drop {
+  0% {
+    text-shadow: 0 0 0 var(--quinary-color);
+  }
+  50% {
+    text-shadow: 10px 10px 5px var(--quinary-color);
+  }
+  100% {
+    text-shadow: 0 0 0 var(--quinary-color);
+}
+}
 
 
 

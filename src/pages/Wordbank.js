@@ -63,7 +63,7 @@ const Wordbank = () => {
     <div className="main-container">
       <section>
         <div className="m-3 row justify-content-between align-items-center">
-          <h2>wordbank: </h2>
+          <h2>wordbank </h2>
           <Link to="/">
             <button id="home-button" className="standard-button" type="button">
               home

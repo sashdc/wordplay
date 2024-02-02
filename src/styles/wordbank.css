@@ -130,5 +130,13 @@ overflow-y: scroll
         font-size: 3.7vw;
         margin: .3rem;
     }
+
+    #wordModal{
+        padding-top: 100px;
+    }
+
+    .modal-content{
+        width: 80%;
+    }
     
 }

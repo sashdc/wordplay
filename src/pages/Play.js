@@ -305,7 +305,8 @@ const Play = () => {
 
         <div id="message-area" className=""></div>
         <div id="user-input-area">
-          <div id="letter-bank"></div>
+          <div id="letter-bank">
+          </div>
           <div id="game-button-area" className="row ">
             <button
               id="next-clue"
