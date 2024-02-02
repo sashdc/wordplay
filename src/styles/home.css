@@ -22,7 +22,7 @@
   font-family: "Rokkitt", serif;
   /* color: #f8f8f8; */
   display: inline-flex;
-  animation: rotate 10s infinite;
+  animation: rotate 10s infinite ;
   animation-timing-function: ease-in-out;
   text-shadow: 10px 10px 5px var(--quinary-color);
 }
@@ -30,7 +30,7 @@
   0%,
   50% {
       transform: rotateY(720deg);
-      text-shadow: 7px 7px 5px var(--quinary-color);
+      /* text-shadow: 7px 7px 5px var(--quinary-color); */
 
   }
 }

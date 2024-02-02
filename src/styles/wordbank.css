@@ -123,11 +123,12 @@ overflow-y: scroll
 
 @media screen and (max-width: 1000px) {
     #stats{
-        width: 100%;
+        width: 90%;
     }
 
     #stats h4{
-        font-size: 3vw;
+        font-size: 3.7vw;
+        margin: .3rem;
     }
     
 }

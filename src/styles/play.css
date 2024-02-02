@@ -21,8 +21,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    align-self: stretch;
-  }
+    justify-content: space-between; 
+ }
 
   #game-button-area{
     display: flex;
@@ -53,8 +53,9 @@
   }
   
   #user-input-area {
-        /* margin-bottom: 1rem; */
+        margin-bottom: .5rem;
     width: 90%;
+
   }
   
   #message-area {
@@ -99,7 +100,10 @@
     #play-game {
       width: 100%;
       margin: 0 auto;
-    }
+        }
+        #hint-area {
+         font-size: large;
+        }
   }
 
   @media screen and (max-width: 768px) {
