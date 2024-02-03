@@ -60,6 +60,7 @@ const Wordbank = () => {
   };
 
   return (
+    <div className="app-container">
     <div className="main-container">
       <section>
         <div className="m-3 row justify-content-between align-items-center">
@@ -117,6 +118,7 @@ const Wordbank = () => {
         <h4>Incomplete: {loadedScore.played - loadedScore.wins - loadedScore.losses}</h4>
       </div>
      
+    </div>
     </div>
   );
 };

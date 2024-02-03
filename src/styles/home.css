@@ -85,24 +85,6 @@
 
 
 
-@keyframes tracking-in-expand {
-  0% {
-    letter-spacing: -0.5em;
-    opacity: 0;
-  }
-  50% {
-    letter-spacing: 0.1em;
-    opacity: 1;
-  }
-  70% {
-    letter-spacing: 0.1em;
-    opacity: 1;
-  }
-  100% {
-    letter-spacing: -0.5em;
-    opacity: 0;
-  }
-}
 
 @media screen and (max-width: 768px) {
   .home-buttons {

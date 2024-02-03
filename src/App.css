@@ -6,7 +6,7 @@
   --quaternary-color: #d7d7d7; /*light grey */
   --quinary-color: #a1a1a1; /*dark grey */
   --senary-color: #919191;
-  /* --septenary-color: #f4f4f4; */
+  --septenary-color: #e0d8de; /*app background colour */
   /* --octonary-color: #f4f4f4; */
   /* --nonary-color: #f4f4f4; */
   /* --denary-color: #f4f4f4; */
@@ -22,6 +22,7 @@
   justify-content: center;
 }
 
+
 ::selection {
   background-color: var(--secondary-color);
   color: var(--tertiary-color);
@@ -35,15 +36,38 @@ h4 {
   color: var(--primary-color);
 }
 
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--septenary-color);
+  overflow: hidden;
+}
+
 .main-container {
   border: 15px solid var(--primary-color);
-  margin: 50px;
+  margin: 10px;
   min-height: 90vh;
   max-height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   animation: rounder 60s ease-in-out infinite;
+
+  box-sizing: border-box;
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  right: 2%;
+  bottom: 2%;
 }
 
 @keyframes rounder {
@@ -134,9 +158,9 @@ h5 {
   .main-container {
     border: 6px solid var(--primary-color);
 
-    margin: 5px auto;
-    height: 99vh;
-    width: 99vw;
+    /* margin: 5px auto; */
+    /* height: 99vh; */
+    /* width: 99vw; */
     padding: 0px;
     animation:none;
 

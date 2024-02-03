@@ -289,6 +289,8 @@ const Play = () => {
   };
 
   return (
+    <div className="app-container">
+
     <div className="main-container">
       <section id="play-game">
         <div id="hint-area">
@@ -341,6 +343,7 @@ const Play = () => {
         </div>
       </section>
     </div>
+  </div>
   );
 };
 
