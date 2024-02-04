@@ -7,7 +7,7 @@
   margin-bottom: 10px;
   height: 2.2em;
   background-color: var(--senary-color);
-  color: var(--quaternary-color);
+  color: var(--tertiary-color);
   font-family: "Rokkitt", serif;
   border-radius: 12px;
   padding: 10px;
@@ -61,7 +61,7 @@
   padding: 10px;
   font-size: 18px;
   background-color: var(--quaternary-color);
-  color: var(--primary-color);
+  color: var(--tertiary-color);
   cursor: pointer;
   user-select: none;
   transition: background-color 0.3s;
