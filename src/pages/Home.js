@@ -5,6 +5,7 @@ import "../styles/home.css";
 
 const Home = () => {
   return (
+    <div className="app-container">
     <div className="main-container">
       <section id="home-page" className="home-page">
           <div className=" custom-title ">
@@ -45,6 +46,7 @@ const Home = () => {
             </Link>
           </div>
       </section>
+    </div>
     </div>
   );
 };

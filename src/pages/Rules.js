@@ -4,6 +4,8 @@ import "../styles/rules.css";
 
 const Rules = () => {
   return (
+    <div className="app-container">
+
     <div className="main-container">
       <div className="rules-pg">
         <h2 className=" custom-title " id="rules-title">
@@ -40,6 +42,7 @@ const Rules = () => {
           </button>
         </Link>
       </div>
+    </div>
     </div>
   );
 };
