@@ -63,7 +63,7 @@ body {
   background: url('../public/noisy-background.jpg') repeat;
   pointer-events: none;
   opacity: .15; /* Adjust the opacity to control the intensity of the grain effect */
-  z-index: 5;
+  z-index: 0;
 }
 
 .main-container {
