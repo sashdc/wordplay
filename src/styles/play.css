@@ -22,7 +22,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between; 
+    animation: fadeIn 1s;
  }
+
+
 
   #game-button-area{
     display: flex;
@@ -65,7 +68,8 @@
     height:2rem;
     font-family: "Rokkitt", serif;
   }
-  
+
+
   @keyframes celebration {
     0% {
       transform: scale(1);
@@ -111,6 +115,10 @@ justify-content: space-around;
     }
     #letter-bank{
       width: 100%;
+    }
+
+    #message-area {
+      font-size: 1.5rem;
     }
 
   }

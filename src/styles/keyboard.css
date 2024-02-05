@@ -82,4 +82,9 @@
   .selected-letters {
     width: 90%;
   }
+
+    .keyboard-key{
+      font-size: 3.5vw;
+    }
+  
 }

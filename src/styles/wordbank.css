@@ -8,6 +8,8 @@ overflow-y: scroll
     justify-content: space-between;
     align-items: center;
     margin: .15rem;
+    animation: fadeIn 1s;
+
 }
 
 .wordbutton {

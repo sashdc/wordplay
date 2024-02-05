@@ -68,7 +68,7 @@ body {
 
 .main-container {
   border: 15px solid var(--primary-color);
-  margin: 10px;
+  /* margin: 10px; */
   min-height: 90vh;
   max-height: 90vh;
   display: flex;
@@ -78,10 +78,10 @@ body {
 
   box-sizing: border-box;
   position: absolute;
-  top: 2%;
-  left: 2%;
-  right: 2%;
-  bottom: 2%;
+  top: 1%;
+  left: 1%;
+  right: 1%;
+  bottom: 1%;
 }
 
 @keyframes rounder {
@@ -99,6 +99,15 @@ body {
   }
   100% {
     border-radius: 0px 0 0px 50px;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 

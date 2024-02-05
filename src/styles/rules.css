@@ -6,7 +6,9 @@
     margin: 0;
     padding: 10px;
     height: 100vh;
-    color: var(--primary-color);}
+    color: var(--primary-color);
+    animation: fadeIn 1s;
+}
 
 .rules p{
     font-family: "Rokkitt", serif;

@@ -9,17 +9,20 @@ const Play = () => {
   let messageArea = document.getElementById("message-area");
   let letterBankDiv = document.getElementById("letter-bank");
 
-    // load score object from local storage
-    const loadScore = () => {
-      const loadedScore = JSON.parse(localStorage.getItem("score")) || { played: 0, wins: 0, losses: 0 };
-      return loadedScore;
+  // load score object from local storage
+  const loadScore = () => {
+    const loadedScore = JSON.parse(localStorage.getItem("score")) || {
+      played: 0,
+      wins: 0,
+      losses: 0,
     };
+    return loadedScore;
+  };
 
   const loadStorage = () => {
     const loadedStorage = JSON.parse(localStorage.getItem("word-bank")) || [];
     return loadedStorage;
   };
-
 
   const [ranWord, setRanWord] = useState("");
   const [score, setScore] = useState(loadScore());
@@ -208,8 +211,7 @@ const Play = () => {
     // check if submitted word has correct length and bring up message if not
     if (submittedWord.length !== ranWord.length) {
       messageArea.classList.add("incorrect");
-      messageArea.textContent =
-        "Try again, This word has " + ranWord.length + " letters";
+      messageArea.textContent = "This word has " + ranWord.length + " letters";
 
       // Set a timeout to remove the hint after a specified duration
       setTimeout(() => {
@@ -278,10 +280,10 @@ const Play = () => {
         revealNextHint();
       } else {
         messageArea.classList.add("incorrect");
-        messageArea.textContent = `Oooh, unlucky. Try again! The word was ${ranWord}`;
+        messageArea.textContent = `Unlucky! The word was ${ranWord}`;
         score.losses += 1;
         setScore(score);
-        localStorage.setItem("score", JSON.stringify(score));  
+        localStorage.setItem("score", JSON.stringify(score));
       }
     }
     // You can access the current word from the state or other relevant variables
@@ -290,60 +292,60 @@ const Play = () => {
 
   return (
     <div className="app-container">
-
-    <div className="main-container">
-      <section id="play-game">
-        <div id="hint-area">
-          {loading ? (
-            <h3>Finding you a word........</h3>
-          ) : (
-            <div id="hint-box">
-              {/* Display accumulating hints*/}
-              <div id="first-hint">{hints[0]}</div>
-            </div>
-          )}
-          {/* Button to reveal the next hint */}
-        </div>
-
-        <div id="message-area" className=""></div>
-        <div id="user-input-area">
-          <div id="letter-bank">
+      <div className="main-container">
+        <section id="play-game">
+          <div id="hint-area">
+            {loading ? (
+              <h3>Finding you a word........</h3>
+            ) : (
+              <div id="hint-box">
+                {/* Display accumulating hints*/}
+                <div id="first-hint">{hints[0]}</div>
+              </div>
+            )}
+            {/* Button to reveal the next hint */}
           </div>
-          <div id="game-button-area" className="row ">
-            <button
-              id="next-clue"
-              className="standard-button game-button"
-              onClick={revealNextHint}
-              disabled={loading}
-            >
-              new hint
-            </button>
-            <button
-              id="newWord"
-              className="standard-button game-button"
-              onClick={newWord}
-            >
-              new word
-            </button>
-            <Link to="/">
-              <button id="home-btn" className="standard-button" type="button">
-                home
-              </button>
-            </Link>
-            <Link to="/wordbank">
+
+          <div id="message-area" className=""></div>
+          <div id="user-input-area">
+            <div id="letter-bank"></div>
+            <div id="game-button-area" className="row ">
               <button
-                id="gameplay-wordbankbutton"
-                className=" standard-button game-button"
+                id="next-clue"
+                className="standard-button game-button"
+                onClick={revealNextHint}
+                disabled={loading}
               >
-                wordbank
+                new hint
               </button>
-            </Link>
+              <button
+                id="newWord"
+                className="standard-button game-button"
+                onClick={newWord}
+                disabled={loading}
+
+              >
+                new word
+              </button>
+              <Link to="/">
+                <button id="home-btn" className="standard-button" type="button">
+                  home
+                </button>
+              </Link>
+              <Link to="/wordbank">
+                <button
+                  id="gameplay-wordbankbutton"
+                  className=" standard-button game-button"
+                >
+                  wordbank
+                </button>
+              </Link>
+            </div>
+            <Keyboard id="keyboard" onKeyboardSubmit={handleKeyboardSubmit} />
           </div>
-          <Keyboard id="keyboard" onKeyboardSubmit={handleKeyboardSubmit} />
-        </div>
-      </section>
+        </section>
+      </div>
     </div>
-  </div>
   );
 };
 

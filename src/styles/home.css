@@ -7,6 +7,8 @@
   align-items: center;
   text-align: center;
   width: 100%;
+  animation: fadeIn 1s;
+
 }
 
 .custom-title {
