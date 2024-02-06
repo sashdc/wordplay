@@ -80,20 +80,22 @@ const Play = () => {
             definition: hintDef,
             DictionaryLink: `https://www.merriam-webster.com/dictionary/${ranWord}`,
           };
-
+          setWordBank([...wordBank, ranWordObj]);
+          // console.log(ranWordObj)
+          console.log(`saving ${ranWordObj.word} to word-bank in local storage`);
+          localStorage.setItem("word-bank", JSON.stringify(wordBank));
           score.played += 1;
           setScore(score);
           localStorage.setItem("score", JSON.stringify(score));
-          setWordBank([...wordBank, ranWordObj]);
-          localStorage.setItem("word-bank", JSON.stringify(wordBank));
+
 
           // Add the new hints to the existing hints array
           setHints((prevHints) => [
             ...prevHints,
             speechPart + " ( " + ranWord.length + " ) \n" + hintDef,
+            firstLetter,
             synOne,
             synTwo,
-            firstLetter,
             lastLetter,
           ]);
 
@@ -164,7 +166,7 @@ const Play = () => {
         document.getElementById("hint-box").appendChild(firstHint);
       }
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   };
 
@@ -213,9 +215,8 @@ const Play = () => {
       messageArea.classList.add("incorrect");
       messageArea.textContent = "This word has " + ranWord.length + " letters";
 
-      // Set a timeout to remove the hint after a specified duration
+      // Set a timeout to remove the alert after a specified duration
       setTimeout(() => {
-        // Remove the hint after the specified duration
         messageArea.textContent = "";
         messageArea.classList.remove("incorrect");
       }, 2000); // Adjust the duration as needed
