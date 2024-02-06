@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# wordplay - the game
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About This Project
+Wordplay is the word-game that tests your vocabulary, not luck.
 
-## Available Scripts
+In this word guessing game, players guess randomly generated words with clues based on that words entry in the Merriam-Webster Thesaurus. Random words are limited to  5-7 characters long, and with a sufficient thesaurus entry. The round ends when the word is correctly guessed or the hints/guesses run out. 
 
-In the project directory, you can run:
+![Screenshot of the wordplay image](images/wordplay.jpg)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### How to Play:
+Players get 5 guesses - and 5 hints, which include:
+- Word Definition
+- 2 Synonyms
+- The first and last letter of the word
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+At each turn, the player types in their guess. Correct letters, and guessed words are stored in the letterbank below the playing area. Once the round is over, played words are stored in the players wordbank using local storage so they can always go back and see the words they’ve learnt. A  stats bar shows the wins and losses so players can track their progress.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies Used:
+1. Coding languages: 
+- HTML
+- CSS
+- JavaScript
+2. Frameworks
+- React
+2. Third-Party-APIs: 
+- Google fonts
+- Bootstrap
+- jQuery
+3. Server-Side-APIs: 
+ - [Merriam-Webster Thesaurus API](https://dictionaryapi.com/products/api-collegiate-thesaurus)
+ - [API-ninjas](https://api-ninjas.com/api/randomword)
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Link:
+- [GitHub Repo](https://github.com/sashdc/wordplay)
+- [Deployed  page](https://wordplay-game.netlify.app/)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Installation
+N/A
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Credits
+Initially coded in collaboration with Saharsh Cherian, Kaye Xie, and Amy Wilford.
+Current React based Iteration fully coded by Saharsh Cherian.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## License
+N/A
