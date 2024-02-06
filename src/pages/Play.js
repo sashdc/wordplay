@@ -80,10 +80,7 @@ const Play = () => {
             definition: hintDef,
             DictionaryLink: `https://www.merriam-webster.com/dictionary/${ranWord}`,
           };
-          setWordBank([...wordBank, ranWordObj]);
-          // console.log(ranWordObj)
-          console.log(`saving ${ranWordObj.word} to word-bank in local storage`);
-          localStorage.setItem("word-bank", JSON.stringify(wordBank));
+
           score.played += 1;
           setScore(score);
           localStorage.setItem("score", JSON.stringify(score));
@@ -99,8 +96,14 @@ const Play = () => {
             lastLetter,
           ]);
 
-          setTimeout(setLoading(false), 1500); // Set loading to false after fetching hints
-        }
+          setTimeout(() => {
+            setLoading(false); // Set loading to false after fetching hints
+          
+            setWordBank((prevWordBank) => [...prevWordBank, ranWordObj]);
+            localStorage.setItem("word-bank", JSON.stringify([...wordBank, ranWordObj]));
+          
+   
+          }, 1500);        }
       })
       .catch((error) => {
         console.error(error);
@@ -204,6 +207,8 @@ const Play = () => {
   };
 
   useEffect(() => {
+    // const savedWordBank = JSON.parse(localStorage.getItem("word-bank")) || [];
+    // setWordBank(savedWordBank);
     // Fetch a new word and its hints on component mount
     setLoading(true); // Set loading to true on component mount
     wordGen();
@@ -232,6 +237,7 @@ const Play = () => {
       // add correct class to the message area
       messageArea.classList.add("correct");
       messageArea.textContent = `Well done! It is ${ranWord}`;
+      // messageArea.innerHTML = `<a className="correct" href="https://www.merriam-webster.com/dictionary/${ranWord}" target="_blank">Well done! It is ${ranWord}</a>`;
     } else {
       // if not, check if there are common letters and display them
       let commonLetters = "";

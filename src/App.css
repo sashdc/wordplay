@@ -14,6 +14,11 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
 
+a{
+  text-decoration: none;
+  /* color: var(--primary-color); */
+}
+
 * {
   padding: 0;
   margin: 0;
