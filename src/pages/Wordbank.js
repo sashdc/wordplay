@@ -63,8 +63,8 @@ const Wordbank = () => {
     <div className="app-container">
     <div className="main-container">
       <section>
-        <div className="m-3 row justify-content-between align-items-center">
-          <h2>wordbank - {loadedStorage.length} words</h2>
+        <div className="m-3 row justify-content-around align-items-center">
+        <h2>wordbank - {loadedStorage.length} {loadedStorage.length === 1 ? 'word' : 'words'}</h2>
           <Link to="/">
             <button id="home-button" className="standard-button" type="button">
               home

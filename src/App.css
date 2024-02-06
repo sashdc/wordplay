@@ -1,6 +1,6 @@
 /* Universal styles */
 :root {
-  --primary-color: #042e8e; /*dark blue */ 
+  --primary-color: #0c2c78; /*dark blue */ 
   --secondary-color: #E71d36; /*red */
   --tertiary-color: #FBFEF9; /*near-white */
   --quaternary-color: #c2c1c1; /*light grey */
@@ -13,6 +13,11 @@
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
+
+a{
+  text-decoration: none;
+  /* color: var(--primary-color); */
+}
 
 * {
   padding: 0;

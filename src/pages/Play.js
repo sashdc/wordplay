@@ -84,21 +84,26 @@ const Play = () => {
           score.played += 1;
           setScore(score);
           localStorage.setItem("score", JSON.stringify(score));
-          setWordBank([...wordBank, ranWordObj]);
-          localStorage.setItem("word-bank", JSON.stringify(wordBank));
+
 
           // Add the new hints to the existing hints array
           setHints((prevHints) => [
             ...prevHints,
             speechPart + " ( " + ranWord.length + " ) \n" + hintDef,
+            firstLetter,
             synOne,
             synTwo,
-            firstLetter,
             lastLetter,
           ]);
 
-          setTimeout(setLoading(false), 1500); // Set loading to false after fetching hints
-        }
+          setTimeout(() => {
+            setLoading(false); // Set loading to false after fetching hints
+          
+            setWordBank((prevWordBank) => [...prevWordBank, ranWordObj]);
+            localStorage.setItem("word-bank", JSON.stringify([...wordBank, ranWordObj]));
+          
+   
+          }, 1500);        }
       })
       .catch((error) => {
         console.error(error);
@@ -164,7 +169,7 @@ const Play = () => {
         document.getElementById("hint-box").appendChild(firstHint);
       }
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   };
 
@@ -202,6 +207,8 @@ const Play = () => {
   };
 
   useEffect(() => {
+    // const savedWordBank = JSON.parse(localStorage.getItem("word-bank")) || [];
+    // setWordBank(savedWordBank);
     // Fetch a new word and its hints on component mount
     setLoading(true); // Set loading to true on component mount
     wordGen();
@@ -213,9 +220,8 @@ const Play = () => {
       messageArea.classList.add("incorrect");
       messageArea.textContent = "This word has " + ranWord.length + " letters";
 
-      // Set a timeout to remove the hint after a specified duration
+      // Set a timeout to remove the alert after a specified duration
       setTimeout(() => {
-        // Remove the hint after the specified duration
         messageArea.textContent = "";
         messageArea.classList.remove("incorrect");
       }, 2000); // Adjust the duration as needed
@@ -231,6 +237,7 @@ const Play = () => {
       // add correct class to the message area
       messageArea.classList.add("correct");
       messageArea.textContent = `Well done! It is ${ranWord}`;
+      // messageArea.innerHTML = `<a className="correct" href="https://www.merriam-webster.com/dictionary/${ranWord}" target="_blank">Well done! It is ${ranWord}</a>`;
     } else {
       // if not, check if there are common letters and display them
       let commonLetters = "";

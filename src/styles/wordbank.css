@@ -30,7 +30,7 @@ overflow-y: scroll
     display: none;
     position: fixed;
     z-index: 1;
-    padding-top: 300px;
+    padding-top: 150px;
     left: 0;
     top: 0;
     width: 100%;
