@@ -230,19 +230,20 @@ const Play = () => {
     // check if submitted word is the same, if so reveal as correct
     if (submittedWord.toLowerCase() === ranWord.toLowerCase()) {
       // add to the score
-      score.wins += 1;
-      setScore(score);
-      localStorage.setItem("score", JSON.stringify(score));
+      const updatedScore = { ...score, wins: score.wins + 1 };
+      setScore(updatedScore);
+      localStorage.setItem("score", JSON.stringify(updatedScore));
       // add correct class to the message area
       messageArea.classList.add("correct");
       messageArea.textContent = `Well done! It is ${ranWord}`;
-      // messageArea.innerHTML = `<a className="correct" href="https://www.merriam-webster.com/dictionary/${ranWord}" target="_blank">Well done! It is ${ranWord}</a>`;
+
     } else {
       // if not, check if there are common letters and display them
       let commonLetters = "";
 
       // Count occurrences of each letter in ranWord
       const ranWordLetterCount = new Map();
+      console.log(ranWordLetterCount);
       for (let letter of ranWord.toLowerCase()) {
         ranWordLetterCount.set(
           letter,
@@ -265,8 +266,11 @@ const Play = () => {
 
         if (!letterBankDiv.innerText.includes(letterToAdd)) {
           // Add the letter to the letter bank
-          const occurrencesInSubmittedWord =
-            submittedWord.toLowerCase().split(letter).length - 1;
+          const occurrencesInSubmittedWord = Array.from(new Set(submittedWord.toLowerCase()))
+          .filter((char) => char === letter.toLowerCase())
+          .length;
+        
+        
           const occurrencesInRanWord = ranWordLetterCount.get(letter) || 0;
           const occurrencesToAdd = Math.max(
             occurrencesInSubmittedWord,
@@ -274,7 +278,7 @@ const Play = () => {
           );
 
           for (let i = 0; i < occurrencesToAdd; i++) {
-            letterBankDiv.innerText += letterToAdd + ",";
+            letterBankDiv.innerText += letterToAdd ;
           }
         }
       }
