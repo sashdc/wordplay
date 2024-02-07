@@ -28,36 +28,42 @@ const Keyboard = (props) => {
     setSelectedLetters("");
   };
 
-  const handleKeyDown = (event) => {
-    // Check if the pressed key is a letter and update the selected letters
-    const isLetter = /^[a-zA-Z]$/.test(event.key);
-    if (event.key === "Enter") {
-      event.preventDefault();
-      console.log( "Pressed Physical Enter Key")
-      console.log("Submitted:", selectedLetters);
-      props.onKeyboardSubmit(selectedLetters);
-  
-      // Clear the selected letters after submission
-      setSelectedLetters("");
-    }
-    if (isLetter) {
-      setSelectedLetters(
-        (prevLetters) => prevLetters + event.key.toUpperCase()
-      );
-    } else if (event.key === "Backspace") {
-      // Handle backspace key
-      setSelectedLetters((prevLetters) => prevLetters.slice(0, -1));
-    }
-  };
+
 
   useEffect(() => {
+    const handleKeyDown = (event) => {
+      // Check if the pressed key is a letter and update the selected letters
+      const isLetter = /^[a-zA-Z]$/.test(event.key);
+      if (event.key === "Enter" || event.key === "NumpadEnter" || event.keyCode === 13) {
+        event.preventDefault();
+   
+        props.onKeyboardSubmit(selectedLetters);
+  
+        // Clear the selected letters after submission
+        setSelectedLetters("");
+  
+        // Focus back on the keyboard input after submission
+        document.getElementById("keyboard-input").focus();
+      }
+      if (isLetter) {
+        setSelectedLetters(
+          (prevLetters) => prevLetters + event.key.toUpperCase()
+        );
+      } else if (event.key === "Backspace") {
+        // Handle backspace key
+        setSelectedLetters((prevLetters) => prevLetters.slice(0, -1));
+      }
+    };
+  
     // Add event listener for keydown on the entire document
     document.addEventListener("keydown", handleKeyDown);
+  
     // Remove the event listener on component unmount
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []); // Empty dependency array to ensure the effect runs only once on mount
+  }, [selectedLetters]); // Include selectedLetters in the dependency array
+  
 
   // Define the QWERTY layout
   const qwertyLayout = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
@@ -65,7 +71,7 @@ const Keyboard = (props) => {
   return (
     <div className="keyboard">
       {/* Display the selected letters */}
-      <div id="keyboard-input" className="selected-letters" autoFocus>
+      <div id="keyboard-input" className="selected-letters" >
         {selectedLetters}
       </div>
 
