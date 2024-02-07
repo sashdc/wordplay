@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import "../styles/play.css";
 
 const Play = () => {
-  console.log("Component re-rendered");
   let nextHintButton = document.getElementById("next-clue");
   let messageArea = document.getElementById("message-area");
   let letterBankDiv = document.getElementById("letter-bank");
@@ -131,6 +130,8 @@ const Play = () => {
   };
 
   const newWord = async () => {
+    // clear the console
+    console.clear();
     letterBankDiv.innerText = "";
     // clear the hint box
     document.getElementById("hint-box").innerHTML = "";
@@ -170,7 +171,6 @@ const Play = () => {
         document.getElementById("hint-box").appendChild(firstHint);
       }
     } catch (error) {
-      // console.error(error);
     }
   };
 
@@ -243,7 +243,6 @@ const Play = () => {
 
       // Count occurrences of each letter in ranWord
       const ranWordLetterCount = new Map();
-      console.log(ranWordLetterCount);
       for (let letter of ranWord.toLowerCase()) {
         ranWordLetterCount.set(
           letter,

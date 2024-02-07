@@ -85,6 +85,13 @@
 
     .keyboard-key{
       font-size: 3.5vw;
+      padding: 4px;
+      border-radius: 8px;
     }
+
+    
+.keyboard-row {
+   gap: 2px;
+}
   
 }

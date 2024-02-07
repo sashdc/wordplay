@@ -97,12 +97,13 @@ const Keyboard = (props) => {
           <div className="keyboard-key" onClick={handleEnterClick}>
             Enter
           </div>
-          <div className="keyboard-key" onClick={handleBackspaceClick}>
-            Backspace
-          </div>
           <div className="keyboard-key" onClick={handleClearClick}>
             Clear
           </div>
+          <div className="keyboard-key" onClick={handleBackspaceClick}>
+            Backspace
+          </div>
+         
         </div>
       </div>
     </div>

@@ -136,12 +136,20 @@ h5 {
 }
 
 .standard-button:hover {
-  /* background-color: var(--septenary-color); */
   background-color: transparent;
   color: var(--secondary-color);
   border: 4px solid var(--secondary-color);
   cursor: pointer;
 }
+
+.standard-button:active {
+  color: var(--tertiary-color);
+  background-color: var(--secondary-color);
+  border: 4px solid var(--secondary-color);
+}
+
+
+
 
 .standard-button-disabled {
   letter-spacing: 0.05rem;
