@@ -85,7 +85,6 @@ const Play = () => {
           setScore(score);
           localStorage.setItem("score", JSON.stringify(score));
 
-
           // Add the new hints to the existing hints array
           setHints((prevHints) => [
             ...prevHints,
@@ -98,12 +97,14 @@ const Play = () => {
 
           setTimeout(() => {
             setLoading(false); // Set loading to false after fetching hints
-          
+
             setWordBank((prevWordBank) => [...prevWordBank, ranWordObj]);
-            localStorage.setItem("word-bank", JSON.stringify([...wordBank, ranWordObj]));
-          
-   
-          }, 1500);        }
+            localStorage.setItem(
+              "word-bank",
+              JSON.stringify([...wordBank, ranWordObj])
+            );
+          }, 1500);
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -207,8 +208,6 @@ const Play = () => {
   };
 
   useEffect(() => {
-    // const savedWordBank = JSON.parse(localStorage.getItem("word-bank")) || [];
-    // setWordBank(savedWordBank);
     // Fetch a new word and its hints on component mount
     setLoading(true); // Set loading to true on component mount
     wordGen();
@@ -330,7 +329,6 @@ const Play = () => {
                 className="standard-button game-button"
                 onClick={newWord}
                 disabled={loading}
-
               >
                 new word
               </button>
