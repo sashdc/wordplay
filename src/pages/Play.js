@@ -77,6 +77,7 @@ const Play = () => {
             speechPart: speechPart,
             synonym: hintSyns,
             definition: hintDef,
+            className : "incomplete",
             DictionaryLink: `https://www.merriam-webster.com/dictionary/${ranWord}`,
           };
 
@@ -236,7 +237,15 @@ const Play = () => {
       // add correct class to the message area
       messageArea.classList.add("correct");
       messageArea.textContent = `Well done! It is ${ranWord}`;
-
+      // update the word bank object to show the word as complete-success
+      const updatedWordBank = wordBank.map((word) => {
+        if (word.word === ranWord) {
+          console.log(word);
+          return { ...word, className: "complete-success" };
+        }
+        return word;
+      });
+      setWordBank(updatedWordBank);
     } else {
       // if not, check if there are common letters and display them
       let commonLetters = "";
@@ -293,10 +302,18 @@ const Play = () => {
         score.losses += 1;
         setScore(score);
         localStorage.setItem("score", JSON.stringify(score));
+        // update the word bank object to show the word as complete-fail
+        const updatedWordBank = wordBank.map((word) => {
+          if (word.word === ranWord) {
+            console.log(word);
+            return { ...word, className: "complete-fail" };
+          }
+          return word;
+        });
+        setWordBank(updatedWordBank);
       }
     }
-    // You can access the current word from the state or other relevant variables
-    // If it's correct, you can handle it accordingly
+
   };
 
   return (
