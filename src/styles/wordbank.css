@@ -21,6 +21,21 @@ overflow-y: scroll
     color: var(--primary-color);
 }
 
+.incomplete{
+    background-color: #9f9a9a;
+    color: white;
+}
+
+.complete-success{
+    background-color: #097a09;
+    color: white;
+}
+
+.complete-fail{
+    background-color: #ef0b0b;
+    color: white;
+}
+
 .wordbutton:hover {
     background-color: var(--quinary-color);
     color: var(--tertiary-color);

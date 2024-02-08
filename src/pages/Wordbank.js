@@ -14,6 +14,7 @@ const Wordbank = () => {
     definition: "",
     synonym: [],
     DictionaryLink: "",
+    className: ""
   });
 
   useEffect(() => {
@@ -77,7 +78,7 @@ const Wordbank = () => {
             {loadedStorage.map((word, index) => (
               <button
                 key={index}
-                className="wordbutton"
+                className={`wordbutton ${word.className}`}
                 id={word.word}
                 onClick={() => handleWordButtonClick(word.word)}
               >
@@ -106,6 +107,7 @@ const Wordbank = () => {
                 <span className="delete-word-button" onClick={deleteWord}>
                   Delete Word
                 </span>
+                
               </div>
             </div>
           </div>
