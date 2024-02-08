@@ -246,6 +246,7 @@ const Play = () => {
         return word;
       });
       setWordBank(updatedWordBank);
+      localStorage.setItem("word-bank", JSON.stringify(updatedWordBank));
     } else {
       // if not, check if there are common letters and display them
       let commonLetters = "";
@@ -311,6 +312,8 @@ const Play = () => {
           return word;
         });
         setWordBank(updatedWordBank);
+        localStorage.setItem("word-bank", JSON.stringify(updatedWordBank));
+
       }
     }
 
