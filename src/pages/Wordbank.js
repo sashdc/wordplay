@@ -10,6 +10,8 @@ const Wordbank = () => {
     losses: 0,
   };
 
+  const isRecords= loadedStorage.length > 0 || loadedScore.played > 0;
+
   const [modalContent, setModalContent] = useState({
     word: "",
     speechPart: "",
@@ -94,14 +96,15 @@ const Wordbank = () => {
                 home
               </button>
             </Link>
-            <button
+            {isRecords ?  <button
               id="clear-button"
               className="standard-button"
               type="button"
               onClick={clearRecords}
             >
               clear records
-            </button>
+            </button> : null}
+           
             </div>
           </div>
           <div className="my-section">
