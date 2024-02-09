@@ -133,6 +133,7 @@ const Play = () => {
   const newWord = async () => {
     // clear the console
     console.clear();
+    setLoading(true)
     letterBankDiv.innerText = "";
     // clear the hint box
     document.getElementById("hint-box").innerHTML = "";
@@ -240,7 +241,6 @@ const Play = () => {
       // update the word bank object to show the word as complete-success
       const updatedWordBank = wordBank.map((word) => {
         if (word.word === ranWord) {
-          console.log(word);
           return { ...word, className: "complete-success" };
         }
         return word;

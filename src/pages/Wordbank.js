@@ -4,9 +4,11 @@ import "../styles/wordbank.css";
 
 const Wordbank = () => {
   let loadedStorage = JSON.parse(localStorage.getItem("word-bank")) || [];
-  let loadedScore = JSON.parse(localStorage.getItem("score")) || { played: 0, wins: 0, losses: 0 };
-
- 
+  let loadedScore = JSON.parse(localStorage.getItem("score")) || {
+    played: 0,
+    wins: 0,
+    losses: 0,
+  };
 
   const [modalContent, setModalContent] = useState({
     word: "",
@@ -14,7 +16,7 @@ const Wordbank = () => {
     definition: "",
     synonym: [],
     DictionaryLink: "",
-    className: ""
+    className: "",
   });
 
   useEffect(() => {
@@ -32,6 +34,19 @@ const Wordbank = () => {
       modal.removeEventListener("click", handleOutsideClick);
     };
   }, []);
+
+  const clearRecords = () => {
+    if (
+      !window.confirm(
+        "Are you sure you want to clear the score and word bank? This action cannot be undone."
+      )
+    ) {
+      return;
+    }
+    localStorage.removeItem("word-bank");
+    localStorage.removeItem("score");
+    window.location.reload();
+  };
 
   const handleWordButtonClick = (word) => {
     const selectedWord = loadedStorage.find((item) => item.word === word);
@@ -62,65 +77,86 @@ const Wordbank = () => {
 
   return (
     <div className="app-container">
-    <div className="main-container">
-      <section>
-        <div className="m-3 row justify-content-around align-items-center">
-        <h2>wordbank - {loadedStorage.length} {loadedStorage.length === 1 ? 'word' : 'words'}</h2>
-          <Link to="/">
-            <button id="home-button" className="standard-button" type="button">
-              home
-            </button>
-          </Link>
-        </div>
-        <div className="my-section">
-          <div id="word-bank">
-            {/* map over loadedStorage to generate buttons of each word */}
-            {loadedStorage.map((word, index) => (
+      <div className="main-container">
+        <section>
+          <div className="wordbank-header">
+            <h2>
+              wordbank - {loadedStorage.length}{" "}
+              {loadedStorage.length === 1 ? "word" : "words"}
+            </h2>
+            <div className="wordbank-header-buttons">
+            <Link to="/">
               <button
-                key={index}
-                className={`wordbutton ${word.className}`}
-                id={word.word}
-                onClick={() => handleWordButtonClick(word.word)}
+                id="home-button"
+                className="standard-button"
+                type="button"
               >
-                {word.word}
+                home
               </button>
-            ))}
-            {/* <!-- modal to show details --> */}
-            {/* Example Modal: */}
-            <div id="wordModal" className="modal" style={{ display: "none" }}>
-              <div className="modal-content">
-                <span className="close-modal-button" onClick={handleCloseModal}>
-                  &times;
-                </span>
-
-                <h2>{modalContent.word}</h2>
-                <p>{modalContent.speechPart}</p>
-                <p>{modalContent.definition}</p>
-                <p>Synonyms: {modalContent.synonym.join(", ")}</p>
-                <a
-                  href={modalContent.DictionaryLink}
-                  target="blank"
-                  className="dictionary-link-button"
+            </Link>
+            <button
+              id="clear-button"
+              className="standard-button"
+              type="button"
+              onClick={clearRecords}
+            >
+              clear records
+            </button>
+            </div>
+          </div>
+          <div className="my-section">
+            <div id="word-bank">
+              {/* map over loadedStorage to generate buttons of each word */}
+              {loadedStorage.map((word, index) => (
+                <button
+                  key={index}
+                  className={`wordbutton ${word.className}`}
+                  id={word.word}
+                  onClick={() => handleWordButtonClick(word.word)}
                 >
-                  Dictionary Link
-                </a>
-                <span className="delete-word-button" onClick={deleteWord}>
-                  Delete Word
-                </span>
-                
+                  {word.word}
+                </button>
+              ))}
+              {/* <!-- modal to show details --> */}
+              {/* Example Modal: */}
+              <div id="wordModal" className="modal" style={{ display: "none" }}>
+                <div className="modal-content">
+                  <span
+                    className="close-modal-button"
+                    onClick={handleCloseModal}
+                  >
+                    &times;
+                  </span>
+
+                  <h2>{modalContent.word}</h2>
+                  <p>{modalContent.speechPart}</p>
+                  <p>{modalContent.definition}</p>
+                  <p>Synonyms: {modalContent.synonym.join(", ")}</p>
+                  <a
+                    href={modalContent.DictionaryLink}
+                    target="blank"
+                    className="dictionary-link-button"
+                  >
+                    Dictionary Link
+                  </a>
+                  <span className="delete-word-button" onClick={deleteWord}>
+                    Delete Word
+                  </span>
+                </div>
               </div>
             </div>
           </div>
+        </section>
+        <div id="stats">
+          <h4>Games Played: {loadedScore.played} </h4>
+          <h4>Wins: {loadedScore.wins} </h4>
+          <h4>Losses: {loadedScore.losses} </h4>
+          <h4>
+            Incomplete:{" "}
+            {loadedScore.played - loadedScore.wins - loadedScore.losses}
+          </h4>
         </div>
-      </section>
-      <div id="stats">
-        <h4>Games Played: {loadedScore.played} </h4>
-        <h4>Wins: {loadedScore.wins} </h4>
-        <h4>Losses: {loadedScore.losses} </h4>
-        <h4>Incomplete: {loadedScore.played - loadedScore.wins - loadedScore.losses}</h4>
       </div>
-     
-    </div>
     </div>
   );
 };

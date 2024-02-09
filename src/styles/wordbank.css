@@ -1,47 +1,70 @@
 .main-container {
-overflow-y: scroll
-}
+    overflow-y: scroll;
+  }
+  
 
-#word-bank{
+
+  #word-bank {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    margin: .15rem;
+    margin: 0.15rem;
     animation: fadeIn 1s;
+  }
 
-}
+  .wordbank-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem;
 
-.wordbutton {
-    padding: .2rem 2rem;
+  }
+  
+  .wordbutton {
+    padding: 0.2rem 1.5rem;
     border-radius: 20px;
     border: none;
-    margin: .5rem;
-    background-color: var(--quaternary-color);
-    color: var(--primary-color);
-}
+    margin: 0.5rem;
+    /* font-family: "Rokkitt", serif; */
+    /* font-weight: 600; */
+    /* font-size: 1.3rem; */
+    transition: .2s ease-in-out;
 
-.incomplete{
-    background-color: #9f9a9a;
+  }
+  
+  .incomplete {
+    background-color: var(--senary-color);
     color: white;
-}
-
-.complete-success{
-    background-color: #097a09;
+  }
+  
+  .complete-success {
+    background-color: var(--octonary-color);
     color: white;
-}
-
-.complete-fail{
-    background-color: #ef0b0b;
+  }
+  
+  .complete-fail {
+    background-color: var(--nonary-color);
     color: white;
-}
-
-.wordbutton:hover {
-    background-color: var(--quinary-color);
-    color: var(--tertiary-color);
-}
-
-#wordModal{
+  }
+  
+  .wordbutton:hover {
+    background-color: var(--tertiary-color);
+    color: var(--senary-color);
+    transition: .2s ease-in-out;
+  }
+  .complete-fail:hover {
+    /* background-color: #ef0b0b; */
+    color: var(--nonary-color);
+  }
+  
+  .complete-success:hover {
+    /* background-color:var(--tertiary-color); */
+    color: var(--octonary-color);
+  }
+  
+  #wordModal {
     display: none;
     position: fixed;
     z-index: 1;
@@ -51,10 +74,10 @@ overflow-y: scroll
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0,0,0,0.4);
-}
-
-.modal-content{
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .modal-content {
     background-color: #fefefe;
     margin: 0 auto;
     padding: 20px;
@@ -63,69 +86,71 @@ overflow-y: scroll
     width: 60%;
     text-align: center;
     box-shadow: #666666 10px 10px 10px;
-    animation: fadein .25s;
-}
-
-@keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-.close-modal-button{
+    animation: fadein 0.25s;
+  }
+  
+  @keyframes fadein {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .close-modal-button {
     color: #ed0000;
     position: absolute;
     top: 0;
-    right: .5em;
+    right: 0.5em;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
-}
-
-.close-modal-button:hover{
+  }
+  
+  .close-modal-button:hover {
     color: #000;
-
-}
-
-
-.modal-content h2{
+  }
+  
+  .modal-content h2 {
     text-align: center;
     font-size: 4rem;
     margin-bottom: -0.8rem;
-}
-
-.dictionary-link-button{
+  }
+  
+  .dictionary-link-button {
     background-color: #666666;
     color: white;
     border: none;
     border-radius: 20px;
-    padding: .5rem 3rem;
-    margin: .5rem;
- }
-
- a:hover{
+    padding: 0.5rem 3rem;
+    margin: 0.5rem;
+  }
+  
+  a:hover {
     text-decoration: none;
     color: white;
- }
-
- .dictionary-link-button:hover{
+  }
+  
+  .dictionary-link-button:hover {
     background-color: #808080;
- }
-
-.delete-word-button{
+  }
+  
+  .delete-word-button {
     background-color: #cc1c1c;
     color: white;
     border: none;
     border-radius: 20px;
-    padding: .5rem 3rem;
-    margin: .5rem;
+    padding: 0.5rem 3rem;
+    margin: 0.5rem;
     cursor: pointer;
-}
-
-.delete-word-button:hover{
+  }
+  
+  .delete-word-button:hover {
     background-color: #ff4d4d;
-}
-
-#stats{
+  }
+  
+  #stats {
     display: flex;
     width: 80%;
     justify-content: space-between;
@@ -135,34 +160,52 @@ overflow-y: scroll
     border-radius: 20px 20px 0 0;
     padding: 0 1rem;
     /* margin: 1rem; */
-}
-
-#stats h4{
+  }
+  
+  #stats h4 {
     font-size: 2.2vw;
     color: var(--tertiary-color);
-
-    margin: .5rem;
+  
+    margin: 0.5rem;
     margin-bottom: 0;
     /* padding: .5rem */
-}
-
-@media screen and (max-width: 1000px) {
-    #stats{
-        width: 90%;
-        text-align: center;
+  }
+  
+  @media screen and (max-width: 1000px) {
+    .wordbank-header {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width:95%
     }
 
-    #stats h4{
-        font-size: 3.7vw;
-        margin: .3rem;
+    .wordbank-header h2{
+      font-size: 160%;
     }
 
-    #wordModal{
-        padding-top: 100px;
-    }
-
-    .modal-content{
-        width: 80%;
-    }
+    .wordbank-header-buttons {
+      display: flex;
+align-items: center;
+justify-content: center;    }
     
-}
+    #stats {
+      width: 90%;
+      text-align: center;
+    }
+  
+    #stats h4 {
+      font-size: 3.7vw;
+      margin: 0.3rem;
+    }
+  
+    #wordModal {
+      padding-top: 100px;
+    }
+  
+    .modal-content {
+      width: 80%;
+    }
+  }
+  
+  
+  
