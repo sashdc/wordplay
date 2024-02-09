@@ -1,23 +1,20 @@
 /* Universal styles */
 :root {
   --primary-color: #0c2c78; /*dark blue */ 
-  --secondary-color: #E71d36; /*red */
+  --secondary-color: #c70a20; /*red */
   --tertiary-color: #FBFEF9; /*near-white */
   --quaternary-color: #c2c1c1; /*light grey */
   --quinary-color: #a1a1a1; /*dark grey */
   --senary-color: #919191;
   --septenary-color: #ebe5ea; /*app background colour */
-  /* --octonary-color: #f4f4f4; */
-  /* --nonary-color: #f4f4f4; */
+  --octonary-color: #136c13;
+  --nonary-color: #ad2626;
   /* --denary-color: #f4f4f4; */
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
 
-a{
-  text-decoration: none;
-  /* color: var(--primary-color); */
-}
+
 
 * {
   padding: 0;
@@ -194,10 +191,6 @@ h5 {
 @media screen and (max-width: 768px) {
   .main-container {
     border: 6px solid var(--primary-color);
-
-    /* margin: 5px auto; */
-    /* height: 99vh; */
-    /* width: 99vw; */
     padding: 0px;
     animation:none;
 

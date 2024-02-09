@@ -133,6 +133,7 @@ const Play = () => {
   const newWord = async () => {
     // clear the console
     console.clear();
+    setLoading(true)
     letterBankDiv.innerText = "";
     // clear the hint box
     document.getElementById("hint-box").innerHTML = "";
