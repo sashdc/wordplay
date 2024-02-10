@@ -11,29 +11,29 @@ const Rules = () => {
         <h2 className=" custom-title " id="rules-title">
           how to play
         </h2>
-        <div className=" rules">
-          <p className="">You get 5 guesses, and 5 hints:</p>
-          <p className="">
+        <div className="rules">
+          <p>You get 5 guesses, and 5 hints:</p>
+          <p>
             - 1 definition
           </p>
-          <p className="">
+          <p>
             - 2 synonyms
           </p>
-          <p className="">
+          <p>
             - the first letter, and the last letter
           </p>
-          <p className="">
+          <p>
             Correct letters, and guessed words are stored in the letterbank
-            below the playing area.
+            below the playing area. Color coding indicatres which words are <span>incomplete</span>, <span>incorrect</span>, or <span>correct</span>.
           </p>
-          <p className="">
+          <p>
             Played words are saved to a wordbank for future reference.
           </p>
-          <p className="">
+          <p>
             Play as many rounds as you like; words and hints are randomly
             generated every time.
           </p>
-          <p className="">GOOD LUCK!</p>
+          <p>GOOD LUCK!</p>
         </div>
         <Link to="/">
           <button className="standard-button centre" id="home-btn">
