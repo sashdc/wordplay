@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Keyboard from "../components/Keyboard";
 import { Link } from "react-router-dom";
 import "../styles/play.css";
+import ConfirmationButton from "../components/ConfirmationButton";
 
 const Play = () => {
   let nextHintButton = document.getElementById("next-clue");
@@ -355,19 +356,20 @@ const Play = () => {
               >
                 new word
               </button>
-              <Link to="/">
-                <button id="home-btn" className="standard-button" type="button">
-                  home
-                </button>
-              </Link>
-              <Link to="/wordbank">
-                <button
-                  id="gameplay-wordbankbutton"
-                  className=" standard-button game-button"
-                >
-                  wordbank
-                </button>
-              </Link>
+              <ConfirmationButton
+                to="/"
+                confirmationMessage="Are you sure you want to leave the game? If you are in the middle of a round it will be saved as incomplete in your wordbank"
+                action={() => {
+                }}
+                buttonText="home"
+              />
+               <ConfirmationButton
+                to="/wordbank"
+                confirmationMessage="Are you sure you want to leave the game? If you are in the middle of a round it will be saved as incomplete in your wordbank"
+                action={() => {
+                }}
+                buttonText="wordbank"
+              />
             </div>
             <Keyboard id="keyboard" onKeyboardSubmit={handleKeyboardSubmit} />
           </div>
