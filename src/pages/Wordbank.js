@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/wordbank.css";
+import WordbankLegend from "../components/WordbankLegend";
 
 const Wordbank = () => {
   let loadedStorage = JSON.parse(localStorage.getItem("word-bank")) || [];
@@ -150,6 +151,8 @@ const Wordbank = () => {
             </div>
           </div>
         </section>
+        <WordbankLegend />
+
         <div id="stats">
           <h4>Games Played: {loadedScore.played} </h4>
           <h4>Wins: {loadedScore.wins} </h4>
