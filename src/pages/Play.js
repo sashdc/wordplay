@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Keyboard from "../components/Keyboard";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import "../styles/play.css";
 import ConfirmationButton from "../components/ConfirmationButton";
 
@@ -78,7 +78,7 @@ const Play = () => {
             speechPart: speechPart,
             synonym: hintSyns,
             definition: hintDef,
-            className : "incomplete",
+            className: "incomplete",
             DictionaryLink: `https://www.merriam-webster.com/dictionary/${ranWord}`,
           };
 
@@ -134,7 +134,7 @@ const Play = () => {
   const newWord = async () => {
     // clear the console
     console.clear();
-    setLoading(true)
+    setLoading(true);
     letterBankDiv.innerText = "";
     // clear the hint box
     document.getElementById("hint-box").innerHTML = "";
@@ -173,8 +173,7 @@ const Play = () => {
         firstHint.textContent = hints[0];
         document.getElementById("hint-box").appendChild(firstHint);
       }
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const wordGen = () => {
@@ -276,11 +275,10 @@ const Play = () => {
 
         if (!letterBankDiv.innerText.includes(letterToAdd)) {
           // Add the letter to the letter bank
-          const occurrencesInSubmittedWord = Array.from(new Set(submittedWord.toLowerCase()))
-          .filter((char) => char === letter.toLowerCase())
-          .length;
-        
-        
+          const occurrencesInSubmittedWord = Array.from(
+            new Set(submittedWord.toLowerCase())
+          ).filter((char) => char === letter.toLowerCase()).length;
+
           const occurrencesInRanWord = ranWordLetterCount.get(letter) || 0;
           const occurrencesToAdd = Math.max(
             occurrencesInSubmittedWord,
@@ -288,7 +286,7 @@ const Play = () => {
           );
 
           for (let i = 0; i < occurrencesToAdd; i++) {
-            letterBankDiv.innerText += letterToAdd ;
+            letterBankDiv.innerText += letterToAdd;
           }
         }
       }
@@ -314,10 +312,8 @@ const Play = () => {
         });
         setWordBank(updatedWordBank);
         localStorage.setItem("word-bank", JSON.stringify(updatedWordBank));
-
       }
     }
-
   };
 
   return (
@@ -333,12 +329,12 @@ const Play = () => {
                 <div id="first-hint">{hints[0]}</div>
               </div>
             )}
-            {/* Button to reveal the next hint */}
           </div>
 
           <div id="message-area" className=""></div>
           <div id="user-input-area">
-            <div id="letter-bank"></div>
+            <div id="letter-bank"  title="These letters you guessed are in the target word"> 
+            </div>
             <div id="game-button-area" className="row ">
               <button
                 id="next-clue"
@@ -359,15 +355,13 @@ const Play = () => {
               <ConfirmationButton
                 to="/"
                 confirmationMessage="Are you sure you want to leave the game? If you are in the middle of a round it will be saved as incomplete in your wordbank"
-                action={() => {
-                }}
+                action={() => {}}
                 buttonText="home"
               />
-               <ConfirmationButton
+              <ConfirmationButton
                 to="/wordbank"
                 confirmationMessage="Are you sure you want to leave the game? If you are in the middle of a round it will be saved as incomplete in your wordbank"
-                action={() => {
-                }}
+                action={() => {}}
                 buttonText="wordbank"
               />
             </div>

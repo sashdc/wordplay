@@ -48,7 +48,32 @@
   font-family: 'Indie Flower';
   border-radius: 12px;
   text-align: center;
+  position: relative;
   }
+
+  #letter-bank::before {
+    content: "These letters are in the target word";
+    position: absolute;
+    font-size: 30px;
+    top: -70%;
+    left: 0;
+    width: 100%;
+    letter-spacing: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666666fc; /* Adjust the color as needed */
+    opacity: 0.2; /* Initial opacity */
+    transition: opacity 0.3s; /* Transition for smooth effect */
+  }
+  
+  #letter-bank:hover::before {
+    opacity: .9; /* Opacity on hover */
+  }
+  
+
+
 
   .game-button{
     margin: 10px;
@@ -111,7 +136,7 @@
 
   @media screen and (max-width: 768px) {
     #game-button-area{
-justify-content: space-around;
+/* justify-content: space-around; */
     }
     #letter-bank{
       width: 100%;
@@ -120,6 +145,8 @@ justify-content: space-around;
     #message-area {
       font-size: 1.5rem;
     }
-
+    #letter-bank::before {
+font-size: 15px;
+    }
   }
   
