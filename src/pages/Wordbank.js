@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/wordbank.css";
 import WordbankLegend from "../components/WordbankLegend";
+import DarkMode from "../components/DarkMode";
 
 const Wordbank = () => {
   let loadedStorage = JSON.parse(localStorage.getItem("word-bank")) || [];
@@ -81,6 +82,8 @@ const Wordbank = () => {
   return (
     <div className="app-container">
       <div className="main-container">
+      <DarkMode />
+
         <section>
           <div className="wordbank-header">
             <h2>

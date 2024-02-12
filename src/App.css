@@ -9,7 +9,22 @@
   --septenary-color: #ebe5ea; /*app background colour */
   --octonary-color: #136c13;
   --nonary-color: #ad2626;
-  /* --denary-color: #f4f4f4; */
+  
+  --denary-color: #FBFEF9;
+}
+
+.dark-mode{
+  --primary-color: #d4d4d4; /*near-white */
+  --secondary-color: #d40019; /*red */
+  --tertiary-color: #bdbec1; /*dark blue */
+  --quaternary-color: #5a5a5a; /*light grey */
+  --quinary-color: #5a5a5a; /*dark grey */
+  --senary-color: #919191;
+  --septenary-color: #191b1f; /*app background colour */
+  --octonary-color: #136c13;
+  --nonary-color: #ad2626;
+  --denary-color: #272727;
+
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");

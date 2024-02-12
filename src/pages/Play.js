@@ -3,6 +3,7 @@ import Keyboard from "../components/Keyboard";
 // import { Link } from "react-router-dom";
 import "../styles/play.css";
 import ConfirmationButton from "../components/ConfirmationButton";
+import DarkMode from "../components/DarkMode";
 
 const Play = () => {
   let nextHintButton = document.getElementById("next-clue");
@@ -319,6 +320,8 @@ const Play = () => {
   return (
     <div className="app-container">
       <div className="main-container">
+      <DarkMode />
+
         <section id="play-game">
           <div id="hint-area">
             {loading ? (

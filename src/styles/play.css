@@ -63,7 +63,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #666666fc; /* Adjust the color as needed */
+    color: var(--denary-color); /* Adjust the color as needed */
     opacity: 0.1; /* Initial opacity */
     transition: opacity 0.3s; /* Transition for smooth effect */
   }

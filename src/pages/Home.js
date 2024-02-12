@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/home.css";
-// import anime from 'animejs';
+import DarkMode from "../components/DarkMode";
 
 const Home = () => {
+
   return (
     <div className="app-container">
     <div className="main-container">
+    <DarkMode />
+
       <section id="home-page" className="home-page">
           <div className=" custom-title ">
           <span>w</span>

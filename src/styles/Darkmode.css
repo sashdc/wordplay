@@ -1,0 +1,25 @@
+/* DarkMode.css */
+
+.dark-mode-toggle {
+    position: absolute;
+    top: 10px;
+    right: 2px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  
+  .toggle-icon {
+    font-size: 24px; 
+    color: var(--quinary-color);
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .dark-mode-toggle.dark-mode .toggle-icon {
+    color: var(--primary-color);
+  }
+  
+  /* Optional: Add a hover effect */
+  .dark-mode-toggle:hover .toggle-icon {
+    color: var(--quaternary-color);
+  }
+  

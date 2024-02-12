@@ -15,7 +15,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    width: 95%;
+    margin : 0 auto;
     padding: 0.5rem;
 
   }
@@ -30,8 +31,8 @@
   }
   
   .incomplete {
-    background-color: var(--senary-color);
-    color: white;
+    background-color: var(--quaternary-color);
+    color: var(--primary-color);
   }
   
   .complete-success {
@@ -46,7 +47,7 @@
   
   .wordbutton:hover {
     background-color: var(--tertiary-color);
-    color: var(--senary-color);
+    color: var(--denary-color);
     transition: .2s ease-in-out;
   }
   .complete-fail:hover {
@@ -159,7 +160,7 @@
   
   #stats h4 {
     font-size: 2.2vw;
-    color: var(--tertiary-color);
+    color: var(--denary-color);
   
     margin: 0.5rem;
     margin-bottom: 0;

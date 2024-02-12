@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../styles/rules.css";
+import DarkMode from "../components/DarkMode";
 
 const Rules = () => {
   return (
     <div className="app-container">
 
     <div className="main-container">
+    <DarkMode />
+
       <div className="rules-pg">
         <h2 className=" custom-title " id="rules-title">
           how to play
@@ -24,7 +27,7 @@ const Rules = () => {
           </p>
           <p>
             Correct letters, and guessed words are stored in the letterbank
-            below the playing area. Color coding indicatres which words are <span>incomplete</span>, <span>incorrect</span>, or <span>correct</span>.
+            below the playing area.
           </p>
           <p>
             Played words are saved to a wordbank for future reference.
