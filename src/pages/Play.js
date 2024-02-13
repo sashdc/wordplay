@@ -177,11 +177,14 @@ const Play = () => {
     } catch (error) {}
   };
 
+  // old api call
   const wordGen = () => {
     fetch("https://api.api-ninjas.com/v1/randomword", {
       method: "GET",
       headers: {
-        "X-Api-Key": "fKJQ9FbuX0UGbknMMEa4jA==i8qElInRgcaEERw2",
+        // "X-Api-Key": "fKJQ9FbuX0UGbknMMEa4jA==i8qElInRgcaEERw2",
+        "X-Api-Key": "u/DJTTkLhTTZx3QPIMQ08g==OtPKVBOMpcuzgezZ",
+
       },
     })
       .then((response) => {
@@ -193,6 +196,7 @@ const Play = () => {
       })
       .then((data) => {
         let ranWord = data.word;
+        console.log(ranWord);
         ranWord = ranWord.toLowerCase();
 
         if (
@@ -209,6 +213,32 @@ const Play = () => {
         console.error(error);
       });
   };
+
+  // const wordGen = () => {
+  //   fetch("https://random-word-api.herokuapp.com/word?length=5-7")
+  //     .then((response) => {
+  //       console.log("got a word");
+  //       if (response.ok) {
+  //         return response.json();
+  //       }
+  //       throw new Error("No word found. Please try again.");
+  //     })
+  //     .then((data) => {
+  //       let ranWord = data[0];
+  //       console.log(ranWord);
+  //       ranWord = ranWord.toLowerCase();
+  
+  //       if (wordBank.some((word) => word.word === ranWord)) {
+  //         return wordGen();
+  //       } else {
+  //         getHints(ranWord);
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
+  
 
   useEffect(() => {
     // Fetch a new word and its hints on component mount

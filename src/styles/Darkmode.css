@@ -23,3 +23,10 @@
     color: var(--quaternary-color);
   }
   
+
+  @media screen and (max-width: 768px){
+    .dark-mode-toggle {
+      top: 2px;
+      right: 2px;
+    }
+  }
