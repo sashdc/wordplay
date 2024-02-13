@@ -83,8 +83,7 @@ const Wordbank = () => {
     <div className="app-container">
       <div className="main-container wordbank-container">
         <DarkMode />
-
-        <section>
+        <section className="wordbank-section">
           <div className="wordbank-header">
             <h2>
               wordbank - {loadedStorage.length}{" "}
