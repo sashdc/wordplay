@@ -320,12 +320,12 @@ const Play = () => {
   return (
     <div className="app-container">
       <div className="main-container">
-      <DarkMode />
+        <DarkMode />
 
         <section id="play-game">
           <div id="hint-area">
             {loading ? (
-              <h3>Finding you a word........</h3>
+              <h3>Finding you a word</h3>
             ) : (
               <div id="hint-box">
                 {/* Display accumulating hints*/}
@@ -336,8 +336,10 @@ const Play = () => {
 
           <div id="message-area" className=""></div>
           <div id="user-input-area">
-            <div id="letter-bank"  title="These letters you guessed are in the target word"> 
-            </div>
+            <div
+              id="letter-bank"
+              title="These letters you guessed are in the target word"
+            ></div>
             <div id="game-button-area" className="row ">
               <button
                 id="next-clue"
