@@ -12,7 +12,7 @@ const Wordbank = () => {
     losses: 0,
   };
 
-  const isRecords= loadedStorage.length > 0 || loadedScore.played > 0;
+  const isRecords = loadedStorage.length > 0 || loadedScore.played > 0;
 
   const [modalContent, setModalContent] = useState({
     word: "",
@@ -81,8 +81,8 @@ const Wordbank = () => {
 
   return (
     <div className="app-container">
-      <div className="main-container">
-      <DarkMode />
+      <div className="main-container wordbank-container">
+        <DarkMode />
 
         <section>
           <div className="wordbank-header">
@@ -91,29 +91,30 @@ const Wordbank = () => {
               {loadedStorage.length === 1 ? "word" : "words"}
             </h2>
             <div className="wordbank-header-buttons">
-            <Link to="/">
-              <button
-                id="home-button"
-                className="standard-button"
-                type="button"
-              >
-                home
-              </button>
-            </Link>
-            {isRecords ?  <button
-              id="clear-button"
-              className="standard-button"
-              type="button"
-              onClick={clearRecords}
-            >
-              clear records
-            </button> : null}
-           
+              <Link to="/">
+                <button
+                  id="home-button"
+                  className="standard-button"
+                  type="button"
+                >
+                  home
+                </button>
+              </Link>
+              {isRecords ? (
+                <button
+                  id="clear-button"
+                  className="standard-button"
+                  type="button"
+                  onClick={clearRecords}
+                >
+                  clear records
+                </button>
+              ) : null}
             </div>
+            <WordbankLegend />
           </div>
           <div className="my-section">
             <div id="word-bank">
-              {/* map over loadedStorage to generate buttons of each word */}
               {loadedStorage.map((word, index) => (
                 <button
                   key={index}
@@ -124,8 +125,6 @@ const Wordbank = () => {
                   {word.word}
                 </button>
               ))}
-              {/* <!-- modal to show details --> */}
-              {/* Example Modal: */}
               <div id="wordModal" className="modal" style={{ display: "none" }}>
                 <div className="modal-content">
                   <span
@@ -154,7 +153,6 @@ const Wordbank = () => {
             </div>
           </div>
         </section>
-        <WordbankLegend />
 
         <div id="stats">
           <h4>Games Played: {loadedScore.played} </h4>

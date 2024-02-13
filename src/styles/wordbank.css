@@ -1,228 +1,229 @@
-.main-container {
-    overflow-y: scroll;
-  }
-  
-  #word-bank {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0.15rem;
-    animation: fadeIn 1s;
-  }
+.wordbank-container {
+  overflow-y: scroll;
+}
 
+.wordbank-container .dark-mode-toggle {
+  right: 0px;
+}
+
+#word-bank {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.15rem;
+  animation: fadeIn 1s;
+}
+
+.wordbank-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+
+.wordbutton {
+  padding: 0.2rem 1.5rem;
+  border-radius: 20px;
+  border: none;
+  margin: 0.5rem;
+  transition: 0.2s ease-in-out;
+}
+
+.incomplete {
+  background-color: var(--quaternary-color);
+  color: var(--primary-color);
+}
+
+.complete-success {
+  background-color: var(--octonary-color);
+  color: white;
+}
+
+.complete-fail {
+  background-color: var(--nonary-color);
+  color: white;
+}
+
+.wordbutton:hover {
+  background-color: var(--tertiary-color);
+  color: var(--denary-color);
+  transition: 0.2s ease-in-out;
+}
+.complete-fail:hover {
+  /* background-color: #ef0b0b; */
+  color: var(--nonary-color);
+}
+
+.complete-success:hover {
+  /* background-color:var(--tertiary-color); */
+  color: var(--octonary-color);
+}
+
+#wordModal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 150px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 20px;
+  width: 60%;
+  text-align: center;
+  box-shadow: #666666 10px 10px 10px;
+  animation: fadein 0.25s;
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.close-modal-button {
+  color: #ed0000;
+  position: absolute;
+  top: 0;
+  right: 0.5em;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-modal-button:hover {
+  color: #000;
+}
+
+.modal-content h2 {
+  text-align: center;
+  font-size: 4rem;
+  margin-bottom: -0.8rem;
+  color: #0c2c78;
+}
+
+.dictionary-link-button {
+  background-color: #666666;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 3rem;
+  margin: 0.5rem;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.dictionary-link-button:hover {
+  background-color: #808080;
+}
+
+.delete-word-button {
+  background-color: #cc1c1c;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 0.5rem 3rem;
+  margin: 0.5rem;
+  cursor: pointer;
+}
+
+.delete-word-button:hover {
+  background-color: #ff4d4d;
+}
+
+#stats {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--primary-color);
+  color: var(--tertiary-color);
+  border-radius: 20px 20px 0 0;
+  padding: 0 1rem;
+  /* margin: 1rem; */
+}
+
+#stats h4 {
+  font-size: 2.2vw;
+  color: var(--denary-color);
+
+  margin: 0.5rem;
+  margin-bottom: 0;
+  /* padding: .5rem */
+}
+
+.wordbank-legend {
+  /* position: absolute; */
+  bottom: 8%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 90%; */
+  /* padding: 0.5rem; */
+}
+.legend-button:hover {
+  cursor: help;
+}
+
+@media screen and (max-width: 1000px) {
   .wordbank-header {
-    display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    width: 95%;
-    margin : 0 auto;
-    padding: 0.5rem;
-
-  }
-  
-  .wordbutton {
-    padding: 0.2rem 1.5rem;
-    border-radius: 20px;
-    border: none;
-    margin: 0.5rem;
-    transition: .2s ease-in-out;
-
-  }
-  
-  .incomplete {
-    background-color: var(--quaternary-color);
-    color: var(--primary-color);
-  }
-  
-  .complete-success {
-    background-color: var(--octonary-color);
-    color: white;
-  }
-  
-  .complete-fail {
-    background-color: var(--nonary-color);
-    color: white;
-  }
-  
-  .wordbutton:hover {
-    background-color: var(--tertiary-color);
-    color: var(--denary-color);
-    transition: .2s ease-in-out;
-  }
-  .complete-fail:hover {
-    /* background-color: #ef0b0b; */
-    color: var(--nonary-color);
-  }
-  
-  .complete-success:hover {
-    /* background-color:var(--tertiary-color); */
-    color: var(--octonary-color);
-  }
-  
-  #wordModal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    padding-top: 150px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
-  }
-  
-  .modal-content {
-    background-color: #fefefe;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #888;
-    border-radius: 20px;
-    width: 60%;
-    text-align: center;
-    box-shadow: #666666 10px 10px 10px;
-    animation: fadein 0.25s;
-  }
-  
-  @keyframes fadein {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  .close-modal-button {
-    color: #ed0000;
-    position: absolute;
-    top: 0;
-    right: 0.5em;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .close-modal-button:hover {
-    color: #000;
-  }
-  
-  .modal-content h2 {
-    text-align: center;
-    font-size: 4rem;
-    margin-bottom: -0.8rem;
-  }
-  
-  .dictionary-link-button {
-    background-color: #666666;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 0.5rem 3rem;
-    margin: 0.5rem;
-  }
-  
-  a:hover {
-    text-decoration: none;
-    color: white;
-  }
-  
-  .dictionary-link-button:hover {
-    background-color: #808080;
-  }
-  
-  .delete-word-button {
-    background-color: #cc1c1c;
-    color: white;
-    border: none;
-    border-radius: 20px;
-    padding: 0.5rem 3rem;
-    margin: 0.5rem;
-    cursor: pointer;
-  }
-  
-  .delete-word-button:hover {
-    background-color: #ff4d4d;
-  }
-  
-  #stats {
-    display: flex;
-    width: 80%;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--primary-color);
-    color: var(--tertiary-color);
-    border-radius: 20px 20px 0 0;
-    padding: 0 1rem;
-    /* margin: 1rem; */
-  }
-  
-  #stats h4 {
-    font-size: 2.2vw;
-    color: var(--denary-color);
-  
-    margin: 0.5rem;
-    margin-bottom: 0;
-    /* padding: .5rem */
-  }
-
-  .wordbank-legend{
-    position: absolute;
-    bottom: 8%;
-    display: flex;
     justify-content: center;
+    width: 95%;
+  }
+
+  .wordbank-header h2 {
+    font-size: 160%;
+  }
+
+  .wordbank-header-buttons {
+    display: flex;
     align-items: center;
+    justify-content: center;
+  }
+
+  #stats {
     width: 90%;
-    /* padding: 0.5rem; */
-  }
-  .legend-button:hover{
-cursor: help;}
-
-  
-  @media screen and (max-width: 1000px) {
-    .wordbank-header {
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width:95%
-    }
-
-    .wordbank-header h2{
-      font-size: 160%;
-    }
-
-    .wordbank-header-buttons {
-      display: flex;
-align-items: center;
-justify-content: center;    }
-    
-    #stats {
-      width: 90%;
-      text-align: center;
-    }
-  
-    #stats h4 {
-      font-size: 3.7vw;
-      margin: 0.3rem;
-    }
-  
-    #wordModal {
-      padding-top: 100px;
-    }
-  
-    .modal-content {
-      width: 80%;
-    }
-  }
-  
-  @media screen and (max-width: 425px) {
-    .legend-button{
-      padding: 0.2rem 0.4rem;
-      margin: .2rem ;
-      font-size: 15px;
-    }
+    text-align: center;
   }
 
-  
-  
+  #stats h4 {
+    font-size: 3.7vw;
+    margin: 0.3rem;
+  }
+
+  #wordModal {
+    padding-top: 100px;
+  }
+
+  .modal-content {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .legend-button {
+    padding: 0.2rem 0.4rem;
+    margin: 0.2rem;
+    font-size: 15px;
+  }
+}

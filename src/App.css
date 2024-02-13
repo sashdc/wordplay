@@ -1,19 +1,18 @@
 /* Universal styles */
 :root {
-  --primary-color: #0c2c78; /*dark blue */ 
+  --primary-color: #0c2c78; /*dark blue */
   --secondary-color: #c70a20; /*red */
-  --tertiary-color: #FBFEF9; /*near-white */
+  --tertiary-color: #fbfef9; /*near-white */
   --quaternary-color: #c2c1c1; /*light grey */
   --quinary-color: #a1a1a1; /*dark grey */
   --senary-color: #919191;
   --septenary-color: #ebe5ea; /*app background colour */
   --octonary-color: #136c13;
   --nonary-color: #ad2626;
-  
-  --denary-color: #FBFEF9;
+  --denary-color: #fbfef9;
 }
 
-.dark-mode{
+.dark-mode {
   --primary-color: #d4d4d4; /*near-white */
   --secondary-color: #d40019; /*red */
   --tertiary-color: #bdbec1; /*dark blue */
@@ -24,12 +23,9 @@
   --octonary-color: #136c13;
   --nonary-color: #ad2626;
   --denary-color: #272727;
-
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap");
-
-
 
 * {
   padding: 0;
@@ -38,7 +34,6 @@
   align-items: center;
   justify-content: center;
 }
-
 
 ::selection {
   background-color: var(--secondary-color);
@@ -77,22 +72,21 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url('../public/noisy-background.jpg') repeat;
+  background: url("../public/noisy-background.jpg") repeat;
   pointer-events: none;
-  opacity: .15; /* Adjust the opacity to control the intensity of the grain effect */
+  opacity: 0.15; /* Adjust the opacity to control the intensity of the grain effect */
   z-index: 0;
 }
 
 .main-container {
   border: 15px solid var(--primary-color);
-  /* margin: 10px; */
+  margin: 5px;
   min-height: 90vh;
-  max-height: 90vh;
+  max-height: 95vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  animation: rounder 60s ease-in-out infinite;
-
+  animation: rounder 30s ease-in-out infinite;
   box-sizing: border-box;
   position: absolute;
   top: 1%;
@@ -145,8 +139,7 @@ h5 {
   border-radius: 10px;
   background-color: var(--secondary-color);
   border: 4px solid var(--secondary-color);
-  transition: .2s ease-in-out;
-
+  transition: 0.2s ease-in-out;
 }
 
 .standard-button:hover {
@@ -154,8 +147,7 @@ h5 {
   color: var(--secondary-color);
   border: 4px solid var(--secondary-color);
   cursor: pointer;
-  transition: .2s ease-in-out;
-
+  transition: 0.2s ease-in-out;
 }
 
 .standard-button:active {
@@ -163,9 +155,6 @@ h5 {
   background-color: var(--secondary-color);
   border: 4px solid var(--secondary-color);
 }
-
-
-
 
 .standard-button-disabled {
   letter-spacing: 0.05rem;
@@ -211,8 +200,7 @@ h5 {
   .main-container {
     border: 6px solid var(--primary-color);
     padding: 0px;
-    animation:none;
-
+    animation: none;
   }
   .standard-button {
     margin: 10px;
@@ -220,7 +208,8 @@ h5 {
 }
 
 @media screen and (max-width: 450px) {
-  .standard-button,.standard-button-disabled  {
+  .standard-button,
+  .standard-button-disabled {
     width: 8em;
     margin: 5px;
     padding: 1px 0px;

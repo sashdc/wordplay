@@ -28,20 +28,22 @@ const Keyboard = (props) => {
     setSelectedLetters("");
   };
 
-
-
   useEffect(() => {
     const handleKeyDown = (event) => {
       // Check if the pressed key is a letter and update the selected letters
       const isLetter = /^[a-zA-Z]$/.test(event.key);
-      if (event.key === "Enter" || event.key === "NumpadEnter" || event.keyCode === 13) {
+      if (
+        event.key === "Enter" ||
+        event.key === "NumpadEnter" ||
+        event.keyCode === 13
+      ) {
         event.preventDefault();
-   
+
         props.onKeyboardSubmit(selectedLetters);
-  
+
         // Clear the selected letters after submission
         setSelectedLetters("");
-  
+
         // Focus back on the keyboard input after submission
         document.getElementById("keyboard-input").focus();
       }
@@ -54,16 +56,15 @@ const Keyboard = (props) => {
         setSelectedLetters((prevLetters) => prevLetters.slice(0, -1));
       }
     };
-  
+
     // Add event listener for keydown on the entire document
     document.addEventListener("keydown", handleKeyDown);
-  
+
     // Remove the event listener on component unmount
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [selectedLetters]); // Include selectedLetters in the dependency array
-  
 
   // Define the QWERTY layout
   const qwertyLayout = ["QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
@@ -71,7 +72,7 @@ const Keyboard = (props) => {
   return (
     <div className="keyboard">
       {/* Display the selected letters */}
-      <div id="keyboard-input" className="selected-letters" >
+      <div id="keyboard-input" className="selected-letters">
         {selectedLetters}
       </div>
 
@@ -103,7 +104,6 @@ const Keyboard = (props) => {
           <div className="keyboard-key" onClick={handleBackspaceClick}>
             Backspace
           </div>
-         
         </div>
       </div>
     </div>
