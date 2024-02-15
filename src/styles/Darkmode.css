@@ -7,6 +7,11 @@
     cursor: pointer;
     z-index: 1000;
   }
+
+  .wordbank-container .dark-mode-toggle {
+    right: 0px;
+  }
+  
   
   .toggle-icon {
     font-size: 24px; 
@@ -28,5 +33,10 @@
     .dark-mode-toggle {
       top: 2px;
       right: 2px;
+    }
+
+    .wordbank-container .dark-mode-toggle {
+      right: 0px;
+      top:10px
     }
   }

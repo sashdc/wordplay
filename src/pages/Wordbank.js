@@ -89,6 +89,8 @@ const Wordbank = () => {
               wordbank - {loadedStorage.length}{" "}
               {loadedStorage.length === 1 ? "word" : "words"}
             </h2>
+            <WordbankLegend />
+
             <div className="wordbank-header-buttons">
               <Link to="/">
                 <button
@@ -110,7 +112,6 @@ const Wordbank = () => {
                 </button>
               ) : null}
             </div>
-            <WordbankLegend />
           </div>
           <div className="my-section">
             <div id="word-bank">
