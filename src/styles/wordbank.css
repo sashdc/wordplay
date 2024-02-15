@@ -77,7 +77,7 @@ margin: 0;
 }
 
 .wordbutton:hover {
-  background-color: var(--tertiary-color);
+  background-color: var(--senary-color);
   color: var(--denary-color);
   transition: 0.2s ease-in-out;
 }
