@@ -65,7 +65,7 @@
 #letter-bank::before {
   content: "These letters are in the target word";
   position: absolute;
-  font-size: 28px;
+  font-size: 80%;
   top: 0%;
   left: 0;
   width: 100%;
@@ -159,7 +159,7 @@
     font-size: 1.5rem;
   }
   #letter-bank::before {
-    font-size: 15px;
+    font-size: 60%;
   }
 }
 
