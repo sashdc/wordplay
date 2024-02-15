@@ -74,9 +74,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--denary-color); /* Adjust the color as needed */
-  opacity: 0.1; /* Initial opacity */
-  transition: opacity 0.3s; /* Transition for smooth effect */
+  color: var(--denary-color); 
+  opacity: 0.1; 
+  transition: opacity 0.3s; 
 }
 
 #letter-bank:hover::before {
@@ -109,6 +109,7 @@
   }
   50% {
     transform: scale(1.1);
+    text-shadow: 0 0px 50px var(--tertiary-color);
   }
   100% {
     transform: scale(1);
@@ -116,27 +117,26 @@
 }
 
 .correct {
-  color: green;
+  color: var(--octonary-color);
   animation: celebration 1s infinite;
 }
 
 .incorrect {
-  color: var(--secondary-color);
   animation: sad 1s infinite;
 }
 
 @keyframes sad {
   0% {
     transform: translateY(0);
-    color: var(--secondary-color);
+    color: #555;
   }
   50% {
-    transform: translateY(-1px);
-    color: #555;
+    transform: translateY(-5px);
+    color: var(--nonary-color);
   }
   100% {
     transform: translateY(0);
-    color: var(--secondary-color);
+    color: #555;
   }
 }
 

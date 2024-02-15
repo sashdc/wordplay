@@ -2,6 +2,7 @@
 
 .selected-letters {
   font-size: 24px;
+  font-weight: bolder;
   width: 60%;
   margin: 0 auto;
   margin-bottom: 10px;
@@ -19,7 +20,7 @@
   content: "";
   display: inline-block;
   width: 0.1em;
-  height: 20px;
+  height: 16px;
   background-color: var(--quaternary-color);
   animation: cursor 0.7s infinite;
   margin: 0 2px;
