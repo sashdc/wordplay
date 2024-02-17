@@ -36,7 +36,7 @@ const Play = () => {
 
   // old api call
   const wordGen = () => {
-    fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true&letters=5&lettersMax=7", {
+    fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true&lettersMin=5&lettersMax=7", {
       method: "GET",
       headers: {
         'X-RapidAPI-Key': rapidApiKey,
