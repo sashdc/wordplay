@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Keyboard from "../components/Keyboard";
-// import { Link } from "react-router-dom";
 import "../styles/play.css";
 import ConfirmationButton from "../components/ConfirmationButton";
 import DarkMode from "../components/DarkMode";
+
 
 const Play = () => {
   let nextHintButton = document.getElementById("next-clue");
@@ -32,6 +32,46 @@ const Play = () => {
   const [currentHintIndex, setCurrentHintIndex] = useState(0);
   const [loading, setLoading] = useState(true); // New state for loading
 
+  const rapidApiKey = process.env.REACT_APP_RAPIDAPI_KEY;
+  // console.log(rapidApiKey)
+
+  // old api call
+  const wordGen = () => {
+    fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true&letters=5&lettersMax=7", {
+      method: "GET",
+      headers: {
+        'X-RapidAPI-Key': rapidApiKey,
+        'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
+      },
+    })
+      .then((response) => {
+        console.log("got a word");
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("No word found. Please try again.");
+      })
+      .then((data) => {
+        let ranWord = data.word;
+        console.log(ranWord);
+        ranWord = ranWord.toLowerCase();
+
+        if (
+          ranWord.length < 5 ||
+          ranWord.length > 7 ||
+          wordBank.some((word) => word.word === ranWord)
+        ) {
+          return wordGen();
+        } else {
+          getHints(ranWord);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+
   const getHints = (ranWord) => {
     setLoading(true); // Set loading to true when fetching hints
     fetch(
@@ -45,12 +85,14 @@ const Play = () => {
         throw new Error("No word found. Please try again.");
       })
       .then((data) => {
+        console.log(data);
         if (!data[0].meta) {
+          console.log(data[0].meta);
           wordGen();
         } else {
           let wordCat = Math.floor(Math.random() * data.length);
           setRanWord(ranWord);
-          const hintDef = "def. " + data[wordCat].shortdef;
+          const hintDef = "definiton: " + data[wordCat].shortdef;
           const hintSyns =
             data[wordCat].meta.syns[
               Math.floor(Math.random() * data[wordCat].meta.syns.length)
@@ -177,42 +219,6 @@ const Play = () => {
     } catch (error) {}
   };
 
-  // old api call
-  const wordGen = () => {
-    fetch("https://api.api-ninjas.com/v1/randomword", {
-      method: "GET",
-      headers: {
-        // "X-Api-Key": "fKJQ9FbuX0UGbknMMEa4jA==i8qElInRgcaEERw2",
-        "X-Api-Key": "u/DJTTkLhTTZx3QPIMQ08g==OtPKVBOMpcuzgezZ",
-
-      },
-    })
-      .then((response) => {
-        console.log("got a word");
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("No word found. Please try again.");
-      })
-      .then((data) => {
-        let ranWord = data.word;
-        console.log(ranWord);
-        ranWord = ranWord.toLowerCase();
-
-        if (
-          ranWord.length < 5 ||
-          ranWord.length > 7 ||
-          wordBank.some((word) => word.word === ranWord)
-        ) {
-          return wordGen();
-        } else {
-          getHints(ranWord);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
 
   // const wordGen = () => {
   //   fetch("https://random-word-api.herokuapp.com/word?length=5-7")
