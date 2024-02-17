@@ -53,10 +53,9 @@ const Play = () => {
       .then((data) => {
         let ranWord = data.word;
         ranWord = ranWord.toLowerCase();
-
         if (
-          ranWord.length < 5 ||
-          ranWord.length > 7 ||
+          // check if word is more than one word or hyphenated
+          ranWord.includes(" ") || ranWord.includes("-") ||
           wordBank.some((word) => word.word === ranWord)
         ) {
           return wordGen();
