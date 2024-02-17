@@ -33,7 +33,6 @@ const Play = () => {
   const [loading, setLoading] = useState(true); // New state for loading
 
   const rapidApiKey = process.env.REACT_APP_RAPIDAPI_KEY;
-  // console.log(rapidApiKey)
 
   // old api call
   const wordGen = () => {
@@ -53,7 +52,6 @@ const Play = () => {
       })
       .then((data) => {
         let ranWord = data.word;
-        console.log(ranWord);
         ranWord = ranWord.toLowerCase();
 
         if (
@@ -85,9 +83,7 @@ const Play = () => {
         throw new Error("No word found. Please try again.");
       })
       .then((data) => {
-        console.log(data);
         if (!data[0].meta) {
-          console.log(data[0].meta);
           wordGen();
         } else {
           let wordCat = Math.floor(Math.random() * data.length);
@@ -342,7 +338,6 @@ const Play = () => {
         // update the word bank object to show the word as complete-fail
         const updatedWordBank = wordBank.map((word) => {
           if (word.word === ranWord) {
-            console.log(word);
             return { ...word, className: "complete-fail" };
           }
           return word;
