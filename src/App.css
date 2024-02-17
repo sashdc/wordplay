@@ -15,7 +15,7 @@
 .dark-mode {
   --primary-color: #d4d4d4; /*near-white */
   --secondary-color: #d40019; /*red */
-  --tertiary-color: #bdbec1; 
+  --tertiary-color: #bdbec1;
   --quaternary-color: #5a5a5a; /*light grey */
   --quinary-color: #5a5a5a; /*dark grey */
   --senary-color: #919191;
@@ -201,6 +201,7 @@ h5 {
     border: 6px solid var(--primary-color);
     padding: 0px;
     animation: none;
+    height: 90vh;
   }
   .standard-button {
     margin: 10px;

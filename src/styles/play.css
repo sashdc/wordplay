@@ -56,21 +56,21 @@
   letter-spacing: 0.25em;
   background-color: var(--quaternary-color);
   color: var(--senary-color);
-  font-family: "Indie Flower";
+  font-family: "Indie Flower", cursive;
   border-radius: 12px;
   text-align: center;
   position: relative;
 }
 
 #letter-bank::before {
-  content: "These letters are in the target word";
+  content: "THESE LETTERS ARE IN THE TARGET WORD";
   position: absolute;
   font-size: 80%;
   top: 0%;
   left: 0;
   width: 100%;
   letter-spacing: 0;
-  height: 90%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
