@@ -1,22 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const ConfirmationButton = ({ to, confirmationMessage, action, buttonText }) => {
+const ConfirmationButton = ({ to, confirmationMessage, action, buttonText, disabled, loading }) => {
   const handleClick = (event) => {
+    if (disabled || loading) {
+      event.preventDefault(); // Prevent action if button is disabled or loading
+      return;
+    }
     const confirmed = window.confirm(confirmationMessage);
     if (!confirmed) {
-      event.preventDefault(); // Prevent navigation if the user clicks "Cancel"
+      event.preventDefault(); 
     } else {
-      action(); // Only execute the action if the user clicks "OK"
+      action(); 
     }
   };
 
   return (
     <Link to={to}>
       <button
-        className="standard-button"
+        // className="standard-button"
+        className={loading || disabled ? "standard-button-disabled" : "standard-button"}
         type="button"
         onClick={handleClick}
+        disabled={disabled || loading}
       >
         {buttonText}
       </button>
