@@ -8,6 +8,7 @@ const Play = () => {
   let nextHintButton = document.getElementById("next-clue");
   let messageArea = document.getElementById("message-area");
   let letterBankDiv = document.getElementById("letter-bank");
+  let giveUpButton = document.getElementById("give-up");
 
   // load score object from local storage
   const loadScore = () => {
@@ -35,6 +36,8 @@ const Play = () => {
 
   // old api call
   const wordGen = () => {
+    setLoading(true); // Set loading to true when fetching hints
+    console.log("set loading to true")
     fetch(
       "https://wordsapiv1.p.rapidapi.com/words/?random=true&lettersMin=5&lettersMax=7",
       {
@@ -72,7 +75,7 @@ const Play = () => {
   };
 
   const getHints = (ranWord) => {
-    setLoading(true); // Set loading to true when fetching hints
+    // setLoading(true); // Set loading to true when fetching hints
     fetch(
       `https://www.dictionaryapi.com/api/v3/references/thesaurus/json/${ranWord}?key=443eb124-d026-41e8-a7c7-3e38052485a4`
     )
@@ -138,7 +141,12 @@ const Play = () => {
 
           setTimeout(() => {
             setLoading(false); // Set loading to false after fetching hints
-
+            // console.log("set loading to false")
+            // nextHintButton.classList.add("standard-button");
+            // nextHintButton.classList.remove("standard-button-disabled");
+            // giveUpButton.classList.add("standard-button");
+            // giveUpButton.classList.remove("standard-button-disabled");
+        
             setWordBank((prevWordBank) => [...prevWordBank, ranWordObj]);
             localStorage.setItem(
               "word-bank",
@@ -221,19 +229,19 @@ const Play = () => {
     nextHintButton.disabled = true;
 
     messageArea.classList.add("incorrect");
-        messageArea.textContent = `Unlucky! The word was ${ranWord}`;
-        score.losses += 1;
-        setScore(score);
-        localStorage.setItem("score", JSON.stringify(score));
-        // update the word bank object to show the word as complete-fail
-        const updatedWordBank = wordBank.map((word) => {
-          if (word.word === ranWord) {
-            return { ...word, className: "complete-fail" };
-          }
-          return word;
-        });
-        setWordBank(updatedWordBank);
-        localStorage.setItem("word-bank", JSON.stringify(updatedWordBank));
+    messageArea.textContent = `Unlucky! The word was ${ranWord}`;
+    score.losses += 1;
+    setScore(score);
+    localStorage.setItem("score", JSON.stringify(score));
+    // update the word bank object to show the word as complete-fail
+    const updatedWordBank = wordBank.map((word) => {
+      if (word.word === ranWord) {
+        return { ...word, className: "complete-fail" };
+      }
+      return word;
+    });
+    setWordBank(updatedWordBank);
+    localStorage.setItem("word-bank", JSON.stringify(updatedWordBank));
   };
 
   useEffect(() => {
@@ -368,24 +376,35 @@ const Play = () => {
             <div id="game-button-area" className="row ">
               <button
                 id="next-clue"
-                className="standard-button game-button"
+                // className="standard-button game-button"
+                className={loading ? "standard-button-disabled" : "standard-button"}
                 onClick={revealNextHint}
                 disabled={loading}
               >
                 new hint
               </button>
-              <button
+              <ConfirmationButton
+                id="newWord"
+                confirmationMessage="Are you sure you want to start a new round? If you are in the middle of a round it will be saved as incomplete in your wordbank"
+                action={newWord}
+                buttonText="new word"
+                disabled={loading}
+              />
+
+              {/* <button
                 id="newWord"
                 className="standard-button game-button"
                 onClick={newWord}
                 disabled={loading}
               >
                 new word
-              </button>
+              </button> */}
               <ConfirmationButton
-                confirmationMessage="Are you sure you want to give up? If you are in the middle of a round it will be saved as incomplete in your wordbank"
+                id="give-up"
+                confirmationMessage="Are you sure you want to give up? If you are in the middle of a round it will be saved as a loss in your wordbank"
                 action={revealAnswer}
                 buttonText="give up"
+                disabled={loading}
               />
               <ConfirmationButton
                 to="/"
@@ -398,6 +417,8 @@ const Play = () => {
                 confirmationMessage="Are you sure you want to leave the game? If you are in the middle of a round it will be saved as incomplete in your wordbank"
                 action={() => {}}
                 buttonText="wordbank"
+                disabled={loading}
+
               />
             </div>
             <Keyboard id="keyboard" onKeyboardSubmit={handleKeyboardSubmit} />
