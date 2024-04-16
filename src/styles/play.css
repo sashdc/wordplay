@@ -66,7 +66,7 @@
   content: "THESE LETTERS ARE IN THE TARGET WORD";
   position: absolute;
   font-size: 80%;
-  top: 0%;
+  top: -80%;
   left: 0;
   width: 100%;
   letter-spacing: 0;
@@ -74,14 +74,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--denary-color); 
-  opacity: 0.1; 
+  color: var(--senary-color); 
+  opacity: 0.05; 
   transition: opacity 0.3s; 
 }
 
 #letter-bank:hover::before {
   opacity: 0.9; /* Opacity on hover */
-  background-color: var(--quaternary-color);
+  /* background-color: var(--quaternary-color); */
   border-radius: 12px;
 }
 

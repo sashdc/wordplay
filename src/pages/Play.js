@@ -4,7 +4,6 @@ import "../styles/play.css";
 import ConfirmationButton from "../components/ConfirmationButton";
 import DarkMode from "../components/DarkMode";
 
-
 const Play = () => {
   let nextHintButton = document.getElementById("next-clue");
   let messageArea = document.getElementById("message-area");
@@ -36,13 +35,16 @@ const Play = () => {
 
   // old api call
   const wordGen = () => {
-    fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true&lettersMin=5&lettersMax=7", {
-      method: "GET",
-      headers: {
-        'X-RapidAPI-Key': rapidApiKey,
-        'X-RapidAPI-Host': 'wordsapiv1.p.rapidapi.com'
-      },
-    })
+    fetch(
+      "https://wordsapiv1.p.rapidapi.com/words/?random=true&lettersMin=5&lettersMax=7",
+      {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key": rapidApiKey,
+          "X-RapidAPI-Host": "wordsapiv1.p.rapidapi.com",
+        },
+      }
+    )
       .then((response) => {
         console.log("got a word");
         if (response.ok) {
@@ -55,7 +57,8 @@ const Play = () => {
         ranWord = ranWord.toLowerCase();
         if (
           // check if word is more than one word or hyphenated
-          ranWord.includes(" ") || ranWord.includes("-") ||
+          ranWord.includes(" ") ||
+          ranWord.includes("-") ||
           wordBank.some((word) => word.word === ranWord)
         ) {
           return wordGen();
@@ -67,7 +70,6 @@ const Play = () => {
         console.error(error);
       });
   };
-
 
   const getHints = (ranWord) => {
     setLoading(true); // Set loading to true when fetching hints
@@ -214,33 +216,6 @@ const Play = () => {
     } catch (error) {}
   };
 
-
-  // const wordGen = () => {
-  //   fetch("https://random-word-api.herokuapp.com/word?length=5-7")
-  //     .then((response) => {
-  //       console.log("got a word");
-  //       if (response.ok) {
-  //         return response.json();
-  //       }
-  //       throw new Error("No word found. Please try again.");
-  //     })
-  //     .then((data) => {
-  //       let ranWord = data[0];
-  //       console.log(ranWord);
-  //       ranWord = ranWord.toLowerCase();
-  
-  //       if (wordBank.some((word) => word.word === ranWord)) {
-  //         return wordGen();
-  //       } else {
-  //         getHints(ranWord);
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
-  
-
   useEffect(() => {
     // Fetch a new word and its hints on component mount
     setLoading(true); // Set loading to true on component mount
@@ -257,7 +232,7 @@ const Play = () => {
       setTimeout(() => {
         messageArea.textContent = "";
         messageArea.classList.remove("incorrect");
-      }, 2000); // Adjust the duration as needed
+      }, 2000); 
       return;
     }
 
@@ -387,6 +362,7 @@ const Play = () => {
               >
                 new word
               </button>
+            
               <ConfirmationButton
                 to="/"
                 confirmationMessage="Are you sure you want to leave the game? If you are in the middle of a round it will be saved as incomplete in your wordbank"
