@@ -216,6 +216,26 @@ const Play = () => {
     } catch (error) {}
   };
 
+  const revealAnswer = () => {
+    nextHintButton.classList.add("standard-button-disabled");
+    nextHintButton.disabled = true;
+
+    messageArea.classList.add("incorrect");
+        messageArea.textContent = `Unlucky! The word was ${ranWord}`;
+        score.losses += 1;
+        setScore(score);
+        localStorage.setItem("score", JSON.stringify(score));
+        // update the word bank object to show the word as complete-fail
+        const updatedWordBank = wordBank.map((word) => {
+          if (word.word === ranWord) {
+            return { ...word, className: "complete-fail" };
+          }
+          return word;
+        });
+        setWordBank(updatedWordBank);
+        localStorage.setItem("word-bank", JSON.stringify(updatedWordBank));
+  };
+
   useEffect(() => {
     // Fetch a new word and its hints on component mount
     setLoading(true); // Set loading to true on component mount
@@ -232,7 +252,7 @@ const Play = () => {
       setTimeout(() => {
         messageArea.textContent = "";
         messageArea.classList.remove("incorrect");
-      }, 2000); 
+      }, 2000);
       return;
     }
 
@@ -362,7 +382,11 @@ const Play = () => {
               >
                 new word
               </button>
-            
+              <ConfirmationButton
+                confirmationMessage="Are you sure you want to give up? If you are in the middle of a round it will be saved as incomplete in your wordbank"
+                action={revealAnswer}
+                buttonText="give up"
+              />
               <ConfirmationButton
                 to="/"
                 confirmationMessage="Are you sure you want to leave the game? If you are in the middle of a round it will be saved as incomplete in your wordbank"
